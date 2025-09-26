@@ -1,0 +1,142 @@
+{
+  "chartType": "sankey",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 16,
+  "tooltipType": "one-row-light",
+  "series": [
+    {
+      "type": "sankey",
+      "data": [
+        { "name": "網站訪客", "itemStyle": { "color": "#64dcf0" } },
+        { "name": "流失用戶", "itemStyle": { "color": "#ff6b6b" } },
+        { "name": "註冊用戶", "itemStyle": { "color": "#ffe664" } },
+        { "name": "活躍用戶", "itemStyle": { "color": "#87dc64" } },
+        { "name": "付費用戶", "itemStyle": { "color": "#b491d7" } },
+        { "name": "忠實客戶", "itemStyle": { "color": "#005087" } },
+        { "name": "推薦客戶", "itemStyle": { "color": "#ff9f43" } },
+        { "name": "推薦新用戶", "itemStyle": { "color": "#70a1ff" } }
+      ],
+      "links": [
+        { "source": "網站訪客", "target": "註冊用戶", "value": 300 },
+        { "source": "網站訪客", "target": "流失用戶", "value": 700 },
+        { "source": "註冊用戶", "target": "活躍用戶", "value": 200 },
+        { "source": "註冊用戶", "target": "流失用戶", "value": 100 },
+        { "source": "活躍用戶", "target": "付費用戶", "value": 150 },
+        { "source": "活躍用戶", "target": "流失用戶", "value": 50 },
+        { "source": "付費用戶", "target": "忠實客戶", "value": 100 },
+        { "source": "付費用戶", "target": "流失用戶", "value": 50 },
+        { "source": "忠實客戶", "target": "推薦客戶", "value": 30 },
+        { "source": "推薦客戶", "target": "推薦新用戶", "value": 20 }
+      ],
+      "layout": "none",
+      "emphasis": {
+        "focus": "adjacency"
+      },
+      "nodeWidth": 25,
+      "nodeGap": 12,
+      "layoutIterations": 32,
+      "orient": "horizontal",
+      "left": "5%",
+      "right": "10%",
+      "top": "10%",
+      "bottom": "10%",
+      "label": {
+        "show": true,
+        "position": "right",
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "color": "#333"
+      },
+      "lineStyle": {
+        "color": "gradient",
+        "curveness": 0.5,
+        "opacity": 0.6
+      }
+    }
+  ],
+  "title": {
+    "text": "客戶轉換流程圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": false,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

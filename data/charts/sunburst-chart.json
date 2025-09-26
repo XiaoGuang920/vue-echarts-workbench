@@ -1,0 +1,243 @@
+{
+  "chartType": "sunburst",
+  "gridWidth": 6,
+  "gridHeight": 4,
+  "order": 17,
+  "tooltipType": "one-row-light",
+  "series": [
+    {
+      "name": "組織結構",
+      "type": "sunburst",
+      "data": [
+        {
+          "name": "公司",
+          "itemStyle": {
+            "color": "#0D4F8C"
+          },
+          "children": [
+            {
+              "name": "技術部門",
+              "itemStyle": {
+                "color": "#FF6E76"
+              },
+              "children": [
+                {
+                  "name": "前端開發",
+                  "value": 40,
+                  "itemStyle": {
+                    "color": "#4A9BD1"
+                  }
+                },
+                {
+                  "name": "後端開發",
+                  "value": 50,
+                  "itemStyle": {
+                    "color": "#7FBEE3"
+                  }
+                },
+                {
+                  "name": "測試工程",
+                  "value": 20,
+                  "itemStyle": {
+                    "color": "#A2D5F2"
+                  }
+                },
+                {
+                  "name": "DevOps",
+                  "value": 15,
+                  "itemStyle": {
+                    "color": "#B3D9F2"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "業務部門",
+              "itemStyle": {
+                "color": "#FDDD60"
+              },
+              "children": [
+                {
+                  "name": "銷售組",
+                  "value": 60,
+                  "itemStyle": {
+                    "color": "#66B2FF"
+                  }
+                },
+                {
+                  "name": "客服組",
+                  "value": 30,
+                  "itemStyle": {
+                    "color": "#99CCFF"
+                  }
+                },
+                {
+                  "name": "市場行銷",
+                  "value": 25,
+                  "itemStyle": {
+                    "color": "#CCE6FF"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "管理部門",
+              "itemStyle": {
+                "color": "#58D9F9"
+              },
+              "children": [
+                {
+                  "name": "人力資源",
+                  "value": 20,
+                  "itemStyle": {
+                    "color": "#336699"
+                  }
+                },
+                {
+                  "name": "財務會計",
+                  "value": 25,
+                  "itemStyle": {
+                    "color": "#6699CC"
+                  }
+                },
+                {
+                  "name": "法務",
+                  "value": 10,
+                  "itemStyle": {
+                    "color": "#99CCFF"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "radius": [0, "70%"],
+      "center": ["50%", "55%"],
+      "sort": null,
+      "emphasis": {
+        "focus": "ancestor"
+      },
+      "label": {
+        "show": true,
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "color": "#666",
+        "rotate": "radial",
+        "align": "center"
+      },
+      "levels": [
+        {},
+        {
+          "r0": "15%",
+          "r": "35%",
+          "itemStyle": {
+            "borderWidth": 2
+          },
+          "label": {
+            "rotate": "tangential",
+            "color": "#666"
+          }
+        },
+        {
+          "r0": "35%",
+          "r": "65%",
+          "label": {
+            "align": "right",
+            "color": "#666"
+          }
+        },
+        {
+          "r0": "65%",
+          "r": "70%",
+          "label": {
+            "show": true,
+            "position": "outside",
+            "color": "#666",
+            "fontSize": 10
+          },
+          "itemStyle": {
+            "borderWidth": 3
+          }
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": "組織結構旭日圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#0D4F8C"
+    }
+  },
+  "legend": {
+    "show": false
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "chartType": "funnel",
+  "gridWidth": 4,
+  "gridHeight": 3,
+  "order": 12,
+  "tooltipType": "one-row-light",
+  "series": [
+    {
+      "name": "銷售漏斗",
+      "type": "funnel",
+      "left": "10%",
+      "top": 60,
+      "width": "80%",
+      "height": "80%",
+      "min": 0,
+      "max": 1000,
+      "minSize": "0%",
+      "maxSize": "100%",
+      "orient": "vertical",
+      "sort": "descending",
+      "gap": 2,
+      "data": [
+        { "name": "潛在客戶", "value": 1000, "itemStyle": { "color": "#64dcf0" } },
+        { "name": "意向客戶", "value": 800, "itemStyle": { "color": "#ffe664" } },
+        { "name": "商機客戶", "value": 600, "itemStyle": { "color": "#87dc64" } },
+        { "name": "成交客戶", "value": 400, "itemStyle": { "color": "#b491d7" } },
+        { "name": "續約客戶", "value": 200, "itemStyle": { "color": "#005087" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "inside",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#fff",
+        "formatter": "{b}: {c}"
+      },
+      "labelLine": {
+        "show": false
+      },
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 10,
+          "shadowOffsetX": 0,
+          "shadowColor": "rgba(0, 0, 0, 0.5)"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "銷售漏斗圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#444"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

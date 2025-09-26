@@ -1,0 +1,187 @@
+{
+  "chartType": "boxplot",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 23,
+  "tooltipType": "boxplot-light",
+  "categories": ["產品A", "產品B", "產品C", "產品D", "產品E"],
+  "data": [
+    [650, 830, 920, 980, 1070],
+    [760, 800, 850, 880, 960],
+    [620, 840, 860, 880, 970],
+    [720, 780, 820, 860, 950],
+    [740, 810, 840, 870, 950]
+  ],
+  "series": [
+    {
+      "name": "產品銷售數據",
+      "type": "boxplot",
+      "data": [
+        [650, 830, 920, 980, 1070],
+        [760, 800, 850, 880, 960],
+        [620, 840, 860, 880, 970],
+        [720, 780, 820, 860, 950],
+        [740, 810, 840, 870, 950]
+      ],
+      "boxWidth": ["7%", "99%"],
+      "itemStyle": {
+        "color": "#FF6E76",
+        "borderColor": "#003366",
+        "borderWidth": 2
+      },
+      "emphasis": {
+        "itemStyle": {
+          "borderColor": "#ffe664",
+          "borderWidth": 3,
+          "shadowBlur": 10,
+          "shadowOffsetX": 2,
+          "shadowOffsetY": 2,
+          "shadowColor": "rgba(0,0,0,0.3)"
+        }
+      }
+    },
+    {
+      "name": "異常值",
+      "type": "scatter",
+      "data": [
+        [0, 600],
+        [1, 1000],
+        [2, 1000],
+        [3, 680],
+        [4, 990]
+      ],
+      "itemStyle": {
+        "color": "#003366",
+        "borderColor": "#b491d7",
+        "borderWidth": 2
+      },
+      "symbolSize": 8,
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 15,
+          "shadowOffsetX": 2,
+          "shadowOffsetY": 2,
+          "shadowColor": "rgba(0,0,0,0.4)"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "產品銷售數據箱線圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "category",
+    "data": ["產品A", "產品B", "產品C", "產品D", "產品E"],
+    "name": "產品類別",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#1B6EC2"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#0D4F8C",
+      "rotate": 0
+    },
+    "boundaryGap": true
+  },
+  "yAxis": {
+    "type": "value",
+    "name": "銷售數量",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#1B6EC2"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#0D4F8C"
+    },
+    "min": 500,
+    "max": 1200,
+    "interval": 100
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

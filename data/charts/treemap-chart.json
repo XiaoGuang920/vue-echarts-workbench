@@ -1,0 +1,208 @@
+{
+  "chartType": "treemap",
+  "gridWidth": 6,
+  "gridHeight": 4,
+  "order": 18,
+  "tooltipType": "one-row-light",
+  "data": [
+    {
+      "name": "亞洲市場",
+      "value": 50,
+      "itemStyle": { "color": "#b8e6f0" },
+      "children": [
+        { "name": "中國", "value": 25, "itemStyle": { "color": "#fff2a8" } },
+        { "name": "日本", "value": 15, "itemStyle": { "color": "#c8e6a8" } },
+        { "name": "韓國", "value": 10, "itemStyle": { "color": "#d4c5e8" } }
+      ]
+    },
+    {
+      "name": "歐洲市場",
+      "value": 30,
+      "itemStyle": { "color": "#7fb3d3" },
+      "children": [
+        { "name": "德國", "value": 12, "itemStyle": { "color": "#ffcf9f" } },
+        { "name": "法國", "value": 10, "itemStyle": { "color": "#b8d0ff" } },
+        { "name": "英國", "value": 8, "itemStyle": { "color": "#ffb8b8" } }
+      ]
+    },
+    {
+      "name": "美洲市場",
+      "value": 20,
+      "itemStyle": { "color": "#92eec0" },
+      "children": [
+        { "name": "美國", "value": 15, "itemStyle": { "color": "#d2aff5" } },
+        { "name": "加拿大", "value": 5, "itemStyle": { "color": "#febcd4" } }
+      ]
+    }
+  ],
+  "series": [
+    {
+      "type": "treemap",
+      "data": [
+        {
+          "name": "亞洲市場",
+          "value": 50,
+          "itemStyle": { "color": "#b8e6f0" },
+          "children": [
+            { "name": "中國", "value": 25, "itemStyle": { "color": "#fff2a8" } },
+            { "name": "日本", "value": 15, "itemStyle": { "color": "#c8e6a8" } },
+            { "name": "韓國", "value": 10, "itemStyle": { "color": "#d4c5e8" } }
+          ]
+        },
+        {
+          "name": "歐洲市場",
+          "value": 30,
+          "itemStyle": { "color": "#7fb3d3" },
+          "children": [
+            { "name": "德國", "value": 12, "itemStyle": { "color": "#ffcf9f" } },
+            { "name": "法國", "value": 10, "itemStyle": { "color": "#b8d0ff" } },
+            { "name": "英國", "value": 8, "itemStyle": { "color": "#ffb8b8" } }
+          ]
+        },
+        {
+          "name": "美洲市場",
+          "value": 20,
+          "itemStyle": { "color": "#92eec0" },
+          "children": [
+            { "name": "美國", "value": 15, "itemStyle": { "color": "#d2aff5" } },
+            { "name": "加拿大", "value": 5, "itemStyle": { "color": "#febcd4" } }
+          ]
+        }
+      ],
+      "width": "80%",
+      "height": "80%",
+      "top": "15%",
+      "roam": false,
+      "nodeClick": "zoomToNode",
+      "breadcrumb": {
+        "show": false,
+        "height": 22,
+        "left": "center",
+        "top": "bottom",
+        "emptyItemWidth": 25,
+        "itemStyle": {
+          "color": "#1B6EC2",
+          "borderColor": "#0D4F8C",
+          "borderWidth": 1,
+          "shadowBlur": 6,
+          "shadowColor": "rgba(0,0,0,0.2)",
+          "textStyle": {
+            "color": "#fff"
+          }
+        }
+      },
+      "label": {
+        "show": true,
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#fff",
+        "formatter": "{b}: {c}"
+      },
+      "upperLabel": {
+        "show": true,
+        "height": 30,
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "color": "#fff"
+      },
+      "itemStyle": {
+        "borderColor": "#666666",
+        "borderWidth": 1,
+        "gapWidth": 2
+      },
+      "emphasis": {
+        "label": {
+          "show": true
+        },
+        "itemStyle": {
+          "borderColor": "#333333",
+          "borderWidth": 2,
+          "shadowBlur": 10,
+          "shadowColor": "rgba(0,0,0,0.3)"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "市場份額矩形樹圖",
+    "left": "center",
+    "top": 5,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "value",
+    "show": false
+  },
+  "yAxis": {
+    "type": "value",
+    "show": false
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

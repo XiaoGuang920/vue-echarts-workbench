@@ -1,0 +1,166 @@
+{
+  "chartType": "graph",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 15,
+  "tooltipType": "one-row-light",
+  "series": [
+    {
+      "type": "graph",
+      "layout": "force",
+      "roam": true,
+      "symbolSize": 50,
+      "data": [
+        { "id": "CEO", "name": "執行長", "category": 0, "value": 100 },
+        { "id": "CTO", "name": "技術長", "category": 1, "value": 80 },
+        { "id": "CMO", "name": "行銷長", "category": 2, "value": 70 },
+        { "id": "CFO", "name": "財務長", "category": 3, "value": 75 },
+        { "id": "DEV1", "name": "前端開發", "category": 1, "value": 40 },
+        { "id": "DEV2", "name": "後端開發", "category": 1, "value": 50 }
+      ],
+      "links": [
+        { "source": "CEO", "target": "CTO", "value": 5 },
+        { "source": "CEO", "target": "CMO", "value": 4 },
+        { "source": "CEO", "target": "CFO", "value": 4 },
+        { "source": "CTO", "target": "DEV1", "value": 3 },
+        { "source": "CTO", "target": "DEV2", "value": 3 }
+      ],
+      "categories": [
+        { "name": "高階主管", "itemStyle": { "color": "#0D4F8C" } },
+        { "name": "技術部門", "itemStyle": { "color": "#FF6E76" } },
+        { "name": "行銷部門", "itemStyle": { "color": "#FDDD60" } },
+        { "name": "財務部門", "itemStyle": { "color": "#58D9F9" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "right",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#0D4F8C"
+      },
+      "itemStyle": {
+        "color": "#1B6EC2",
+        "borderColor": "#0D4F8C",
+        "borderWidth": 2
+      },
+      "lineStyle": {
+        "color": "#4A9BD1",
+        "width": 2,
+        "curveness": 0
+      },
+      "emphasis": {
+        "focus": "adjacency",
+        "lineStyle": {
+          "width": 4
+        }
+      },
+      "force": {
+        "repulsion": 1000,
+        "gravity": 0.1,
+        "edgeLength": 100,
+        "layoutAnimation": true
+      },
+      "edgeSymbol": ["none", "arrow"],
+      "edgeSymbolSize": [4, 10]
+    }
+  ],
+  "title": {
+    "text": "部門關係網絡圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "value",
+    "show": false
+  },
+  "yAxis": {
+    "type": "value",
+    "show": false
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "15%",
+    "right": "10%",
+    "top": "25%",
+    "bottom": "12%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

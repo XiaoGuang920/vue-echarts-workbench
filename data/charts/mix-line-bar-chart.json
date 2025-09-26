@@ -1,0 +1,224 @@
+{
+  "chartType": "mixLineBar",
+  "gridWidth": 6,
+  "gridHeight": 4,
+  "order": 3,
+  "tooltipType": "default",
+  "xAxis": {
+    "type": "category",
+    "data": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "name": "月份",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#147891"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#666",
+      "rotate": 0
+    }
+  },
+  "yAxis": [
+    {
+      "name": "降雨量",
+      "type": "value",
+      "position": "left",
+      "nameTextStyle": {
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "color": "#147891"
+      },
+      "axisLine": {
+        "show": true,
+        "lineStyle": {
+          "color": "#005087"
+        }
+      },
+      "axisLabel": {
+        "formatter": "{value} ml",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#666"
+      }
+    },
+    {
+      "name": "溫度",
+      "type": "value",
+      "position": "right",
+      "nameTextStyle": {
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "color": "#147891"
+      },
+      "axisLine": {
+        "show": true,
+        "lineStyle": {
+          "color": "#E65F5A"
+        }
+      },
+      "axisLabel": {
+        "formatter": "{value} °C",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#666"
+      }
+    }
+  ],
+  "series": [
+    {
+      "name": "降雨量",
+      "type": "bar",
+      "data": [20, 49, 70, 232, 250, 76, 135, 162, 32, 20, 60, 31],
+      "itemStyle": {
+        "color": "#64dcf0"
+      },
+      "yAxisIndex": 0,
+      "barGap": "20%",
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 10,
+          "shadowColor": "rgba(0,0,0,0.3)"
+        }
+      }
+    },
+    {
+      "name": "蒸發量",
+      "type": "bar",
+      "data": [26, 59, 90, 264, 287, 70, 175, 182, 48, 18, 60, 47],
+      "itemStyle": {
+        "color": "#87dc64"
+      },
+      "yAxisIndex": 0,
+      "barGap": "20%",
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 10,
+          "shadowColor": "rgba(0,0,0,0.3)"
+        }
+      }
+    },
+    {
+      "name": "平均溫度",
+      "type": "line",
+      "data": [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+      "lineStyle": {
+        "color": "#E65F5A",
+        "width": 2
+      },
+      "itemStyle": {
+        "color": "#E65F5A"
+      },
+      "symbol": "circle",
+      "symbolSize": 4,
+      "showSymbol": true,
+      "yAxisIndex": 1,
+      "smooth": true,
+      "emphasis": {
+        "itemStyle": {
+          "borderColor": "#E65F5A",
+          "borderWidth": 2
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "降雨量與溫度關係分析圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#444"
+    },
+    "left": "center",
+    "bottom": 5,
+    "selectedMode": true,
+    "inactiveColor": "#ccc",
+    "selected": {
+      "降雨量": true,
+      "蒸發量": true,
+      "平均溫度": true
+    }
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "5%",
+    "right": "8%",
+    "top": "15%",
+    "bottom": "12%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

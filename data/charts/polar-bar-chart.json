@@ -1,0 +1,152 @@
+{
+  "chartType": "polarBar",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 19,
+  "tooltipType": "one-row-light",
+  "categories": ["產品A", "產品B", "產品C", "產品D", "產品E"],
+  "data": [85, 72, 68, 59, 63],
+  "series": [
+    {
+      "type": "bar",
+      "coordinateSystem": "polar",
+      "angleAxisIndex": 0,
+      "radiusAxisIndex": 0,
+      "data": [85, 72, 68, 59, 63],
+      "itemStyle": {
+        "color": "#FF6E76",
+        "borderColor": "#0D4F8C",
+        "borderWidth": 2
+      },
+      "label": {
+        "show": true,
+        "position": "middle",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#fff"
+      },
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 20,
+          "shadowColor": "rgba(0,0,0,0.8)"
+        }
+      }
+    }
+  ],
+  "polar": {
+    "center": ["50%", "55%"],
+    "radius": "60%"
+  },
+  "angleAxis": {
+    "type": "category",
+    "data": ["產品A", "產品B", "產品C", "產品D", "產品E"],
+    "startAngle": 90,
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#0D4F8C"
+    }
+  },
+  "radiusAxis": {
+    "type": "value",
+    "min": 0,
+    "max": 100,
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 10,
+      "color": "#0D4F8C"
+    }
+  },
+  "title": {
+    "text": "極坐標產品銷售圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "value",
+    "show": false
+  },
+  "yAxis": {
+    "type": "value",
+    "show": false
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}
