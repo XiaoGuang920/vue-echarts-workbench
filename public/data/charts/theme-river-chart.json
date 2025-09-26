@@ -1,0 +1,161 @@
+{
+  "chartType": "themeRiver",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 21,
+  "tooltipType": "themeriver-light",
+  "color": ["#64dcf0", "#ffe664", "#87dc64", "#b491d7", "#005087"],
+  "series": [
+    {
+      "type": "themeRiver",
+      "data": [
+        ["2020/01/01", 10, "AI"],
+        ["2020/02/01", 15, "AI"],
+        ["2020/03/01", 35, "AI"],
+        ["2020/04/01", 38, "AI"],
+        ["2020/05/01", 42, "AI"],
+        ["2020/06/01", 45, "AI"],
+        ["2020/01/01", 8, "區塊鏈"],
+        ["2020/02/01", 12, "區塊鏈"],
+        ["2020/03/01", 18, "區塊鏈"],
+        ["2020/04/01", 23, "區塊鏈"],
+        ["2020/05/01", 20, "區塊鏈"],
+        ["2020/06/01", 25, "區塊鏈"],
+        ["2020/01/01", 5, "物聯網"],
+        ["2020/02/01", 8, "物聯網"],
+        ["2020/03/01", 12, "物聯網"],
+        ["2020/04/01", 18, "物聯網"],
+        ["2020/05/01", 22, "物聯網"],
+        ["2020/06/01", 28, "物聯網"],
+        ["2020/01/01", 12, "雲端運算"],
+        ["2020/02/01", 18, "雲端運算"],
+        ["2020/03/01", 25, "雲端運算"],
+        ["2020/04/01", 30, "雲端運算"],
+        ["2020/05/01", 35, "雲端運算"],
+        ["2020/06/01", 40, "雲端運算"],
+        ["2020/01/01", 6, "大數據"],
+        ["2020/02/01", 10, "大數據"],
+        ["2020/03/01", 15, "大數據"],
+        ["2020/04/01", 20, "大數據"],
+        ["2020/05/01", 25, "大數據"],
+        ["2020/06/01", 30, "大數據"]
+      ],
+      "emphasis": {
+        "itemStyle": {
+          "shadowBlur": 20,
+          "shadowColor": "rgba(0, 0, 0, 0.8)"
+        }
+      },
+      "label": {
+        "show": true,
+        "position": "middle",
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "rgba(0, 0, 0, 0.6)"
+      }
+    }
+  ],
+  "title": {
+    "text": "技術趨勢主題河流圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "singleAxis": {
+    "type": "time",
+    "name": "時間",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#005087"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#005087"
+    },
+    "left": 50,
+    "right": 50,
+    "bottom": 50,
+    "height": "60%"
+  },
+  "legend": {
+    "show": true,
+    "data": ["AI", "區塊鏈", "物聯網", "雲端運算", "大數據"],
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

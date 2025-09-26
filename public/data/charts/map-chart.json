@@ -1,0 +1,153 @@
+{
+  "chartType": "map",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 5,
+  "tooltipType": "one-row-light",
+  "mapConfig": {
+    "roam": false,
+    "zoom": 4.5,
+    "center": [121, 24],
+    "aspectScale": 0.75,
+    "layoutCenter": ["50%", "50%"],
+    "layoutSize": "80%"
+  },
+  "series": [
+    {
+      "name": "台灣各縣市資料",
+      "type": "map",
+      "showSymbol": false,
+      "map": "taiwan",
+      "data": [
+        { "name": "臺北市", "value": 2685 },
+        { "name": "新北市", "value": 4031 },
+        { "name": "桃園市", "value": 2267 },
+        { "name": "臺中市", "value": 2820 },
+        { "name": "臺南市", "value": 1885 },
+        { "name": "高雄市", "value": 2776 },
+        { "name": "臺東縣", "value": 1200 },
+        { "name": "花蓮縣", "value": 1500 }
+      ],
+      "label": {
+        "show": true,
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "color": "#333"
+      },
+      "itemStyle": {
+        "areaColor": "#f0f0f0",
+        "borderColor": "#999",
+        "borderWidth": 1
+      },
+      "emphasis": {
+        "label": {
+          "show": false,
+          "color": "#fff",
+          "fontSize": 12,
+          "fontWeight": "bold"
+        },
+        "itemStyle": {
+          "areaColor": "#1B6EC2",
+          "borderColor": "#fff",
+          "borderWidth": 1,
+          "shadowBlur": 10,
+          "shadowColor": "rgba(0,0,0,0.3)"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "台灣各縣市數據分布圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": false
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "visualMap": {
+    "show": true,
+    "min": 1000,
+    "max": 5000,
+    "left": "left",
+    "top": "bottom",
+    "orient": "vertical",
+    "text": ["高", "低"],
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#333"
+    },
+    "inRange": {
+      "color": ["#BEE6E1", "#64dcf0", "#005087"]
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

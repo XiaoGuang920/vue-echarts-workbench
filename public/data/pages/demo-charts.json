@@ -1,0 +1,1569 @@
+{
+  "filters": [
+    {
+      "label": "日期",
+      "type": "date",
+      "apiParam": "date",
+      "default": "2025-01-01",
+      "quickSelect": [
+        {
+          "label": "最近一週",
+          "value": "last_7_days"
+        },
+        {
+          "label": "最近一個月",
+          "value": "last_30_days"
+        }
+      ],
+      "placeholder": "請選擇日期"
+    },
+    {
+      "label": "日期範圍",
+      "type": "dateRange",
+      "apiParam": {
+        "start": "start_date",
+        "end": "end_date"
+      },
+      "default": {
+        "start": "2025-01-01",
+        "end": "2025-06-01"
+      },
+      "quickSelect": [
+        {
+          "label": "最近一週",
+          "value": "last_7_days"
+        },
+        {
+          "label": "最近一個月",
+          "value": "last_30_days"
+        }
+      ],
+      "placeholder": {
+        "start": "請選擇開始日期",
+        "end": "請選擇結束日期"
+      }
+    },
+    {
+      "label": "電池組別",
+      "type": "multiSelect",
+      "apiParam": "group_id",
+      "options": [
+        {
+          "label": "電池組A",
+          "value": "group_a"
+        },
+        {
+          "label": "電池組B",
+          "value": "group_b"
+        },
+        {
+          "label": "電池組C",
+          "value": "group_c"
+        }
+      ],
+      "default": ["group_a"],
+      "placeholder": "請選擇電池組別"
+    },
+    {
+      "label": "電池組別",
+      "type": "singleSelect",
+      "apiParam": "group_id",
+      "options": [
+        {
+          "label": "電池組D",
+          "value": "group_d"
+        },
+        {
+          "label": "電池組E",
+          "value": "group_e"
+        },
+        {
+          "label": "電池組F",
+          "value": "group_f"
+        }
+      ],
+      "default": "group_d",
+      "placeholder": "請選擇電池組"
+    },
+    {
+      "label": "溫度",
+      "type": "number",
+      "apiParam": "temp",
+      "default": 45,
+      "unit": "°C",
+      "quickSelect": [
+        {
+          "label": "正常(20-35°C)",
+          "value": [20, 35]
+        },
+        {
+          "label": "警告(35-40°C)",
+          "value": [35, 40]
+        }
+      ],
+      "placeholder": "請填寫溫度"
+    },
+    {
+      "label": "溫度範圍",
+      "type": "numberRange",
+      "apiParam": {
+        "min": "min_temp",
+        "max": "max_temp"
+      },
+      "default": {
+        "start": 20,
+        "end": 35
+      },
+      "unit": "°C",
+      "quickSelect": [
+        {
+          "label": "正常(20-35°C)",
+          "value": [20, 35]
+        },
+        {
+          "label": "警告(35-40°C)",
+          "value": [35, 40]
+        }
+      ],
+      "placeholder": {
+        "start": "請填寫初始溫度",
+        "end": "請填寫結束溫度"
+      }
+    },
+    {
+      "label": "關鍵字搜尋",
+      "type": "text",
+      "apiParam": "keyword",
+      "default": "default",
+      "placeholder": "請輸入關鍵字"
+    }
+  ],
+  "charts": [
+    {
+      "chartType": "dashboardMetric",
+      "gridWidth": 4,
+      "gridHeight": 1,
+      "gridX": 1,
+      "gridY": 1,
+      "label": "總銷售額",
+      "value": 1234567,
+      "icon": "dollar-sign",
+      "color": "#005087",
+      "unit": "元",
+      "trend": {
+        "type": "up",
+        "value": 5.2,
+        "color": "#22c55e"
+      },
+      "description": "本月成長率"
+    },
+    {
+      "chartType": "dashboardMetric",
+      "gridWidth": 4,
+      "gridHeight": 1,
+      "gridX": 5,
+      "gridY": 1,
+      "label": "總用戶數",
+      "value": 1200,
+      "icon": "user",
+      "color": "#005087",
+      "unit": "人",
+      "trend": {
+        "type": "down",
+        "value": 5.2,
+        "color": "#22c55e"
+      },
+      "description": ""
+    },
+    {
+      "chartType": "dashboardMetric",
+      "gridWidth": 4,
+      "gridHeight": 1,
+      "gridX": 9,
+      "gridY": 1,
+      "label": "轉換率",
+      "value": 4.8,
+      "icon": "camera",
+      "color": "#005087",
+      "unit": "人",
+      "trend": {
+        "type": "up",
+        "value": 0.2,
+        "color": "#22c55e"
+      },
+      "description": ""
+    },
+    {
+      "chartType": "line",
+      "gridWidth": 6,
+      "gridHeight": 3,
+      "gridX": 1,
+      "gridY": 2,
+      "symbolSizeType": "default",
+      "symbolSizeConfig": {
+        "min": 6,
+        "max": 12,
+        "factor": 100,
+        "base": 10
+      },
+      "tooltipType": "default",
+      "series": [
+        {
+          "name": "產品A",
+          "type": "line",
+          "data": [65, 59, 80, 81],
+          "lineStyle": {
+            "color": "#005087"
+          },
+          "itemStyle": {
+            "color": "#005087"
+          },
+          "label": {
+            "show": true,
+            "position": "top",
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "smooth": true,
+          "symbol": "circle",
+          "symbolSize": 6
+        },
+        {
+          "name": "產品B",
+          "type": "line",
+          "data": [28, 48, 40, 19],
+          "lineStyle": {
+            "color": "#87dc64"
+          },
+          "itemStyle": {
+            "color": "#87dc64"
+          },
+          "label": {
+            "show": true,
+            "position": "top",
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "smooth": true,
+          "symbol": "circle",
+          "symbolSize": 6
+        }
+      ],
+      "title": {
+        "text": "銷售趨勢分析圖",
+        "left": "center",
+        "top": 20,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "xAxis": {
+        "type": "category",
+        "data": ["第一季", "第二季", "第三季", "第四季"],
+        "name": "季度",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "yAxis": {
+        "type": "value",
+        "name": "銷售金額 (萬元)",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666"
+        },
+        "min": 0,
+        "max": 100,
+        "interval": 20
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "25%",
+        "bottom": "12%",
+        "containLabel": true
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      }
+    },
+    {
+      "chartType": "lineSections",
+      "gridWidth": 6,
+      "gridHeight": 3,
+      "gridX": 7,
+      "gridY": 2,
+      "tooltipType": "default",
+      "xAxis": {
+        "type": "category",
+        "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        "name": "星期",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "yAxis": {
+        "type": "value",
+        "name": "溫度 (°C)",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666"
+        },
+        "min": -5,
+        "max": 15,
+        "interval": 5
+      },
+      "series": [
+        {
+          "name": "高溫",
+          "type": "line",
+          "data": [10, 11, 13, 11, 12, 12, 9],
+          "lineStyle": {
+            "color": "#005087",
+            "width": 2
+          },
+          "itemStyle": {
+            "color": "#005087"
+          },
+          "symbol": "circle",
+          "symbolSize": 6,
+          "smooth": false,
+          "showSymbol": true,
+          "label": {
+            "show": true,
+            "position": "top",
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "markLine": {
+            "silent": true,
+            "symbol": "none",
+            "lineStyle": {
+              "color": "#333"
+            },
+            "data": [{ "yAxis": 12 }, { "yAxis": 9 }]
+          },
+          "markArea": {
+            "silent": true,
+            "itemStyle": {
+              "color": "rgba(255, 173, 177, 0.6)"
+            },
+            "data": [
+              [
+                {
+                  "xAxis": "Tue"
+                },
+                {
+                  "xAxis": "Thu"
+                }
+              ],
+              [
+                {
+                  "xAxis": "Fri"
+                },
+                {
+                  "xAxis": "Sat"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "name": "低溫",
+          "type": "line",
+          "data": [1, -2, 2, 5, 3, 2, 0],
+          "lineStyle": {
+            "color": "#87dc64",
+            "width": 2
+          },
+          "itemStyle": {
+            "color": "#87dc64"
+          },
+          "symbol": "circle",
+          "symbolSize": 6,
+          "smooth": false,
+          "showSymbol": true,
+          "label": {
+            "show": true,
+            "position": "top",
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "markLine": {
+            "silent": true,
+            "symbol": "none",
+            "lineStyle": {
+              "color": "#333"
+            },
+            "data": [
+              [
+                { "xAxis": 1, "yAxis": -2 },
+                { "xAxis": 3, "yAxis": 3 }
+              ]
+            ]
+          },
+          "markArea": {
+            "silent": true,
+            "itemStyle": {
+              "color": "rgba(255, 173, 177, 0.3)"
+            },
+            "data": [
+              [
+                {
+                  "xAxis": "Wed"
+                },
+                {
+                  "xAxis": "Fri"
+                }
+              ]
+            ]
+          }
+        }
+      ],
+      "title": {
+        "text": "溫度變化分段線圖",
+        "left": "center",
+        "top": 20,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "15%",
+        "bottom": "12%",
+        "containLabel": true
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      }
+    },
+    {
+      "chartType": "mixLineBar",
+      "gridWidth": 6,
+      "gridHeight": 6,
+      "gridX": 1,
+      "gridY": 5,
+      "tooltipType": "default",
+      "xAxis": {
+        "type": "category",
+        "data": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "name": "月份",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "yAxis": [
+        {
+          "name": "降雨量",
+          "type": "value",
+          "position": "left",
+          "nameTextStyle": {
+            "fontFamily": "sans-serif",
+            "fontSize": 14,
+            "color": "#147891"
+          },
+          "axisLine": {
+            "show": true,
+            "lineStyle": {
+              "color": "#005087"
+            }
+          },
+          "axisLabel": {
+            "formatter": "{value} ml",
+            "fontFamily": "sans-serif",
+            "fontSize": 12,
+            "color": "#666"
+          }
+        },
+        {
+          "name": "溫度",
+          "type": "value",
+          "position": "right",
+          "nameTextStyle": {
+            "fontFamily": "sans-serif",
+            "fontSize": 14,
+            "color": "#147891"
+          },
+          "axisLine": {
+            "show": true,
+            "lineStyle": {
+              "color": "#E65F5A"
+            }
+          },
+          "axisLabel": {
+            "formatter": "{value} °C",
+            "fontFamily": "sans-serif",
+            "fontSize": 12,
+            "color": "#666"
+          }
+        }
+      ],
+      "series": [
+        {
+          "name": "降雨量",
+          "type": "bar",
+          "data": [20, 49, 70, 232, 250, 76, 135, 162, 32, 20, 60, 31],
+          "itemStyle": {
+            "color": "#64dcf0"
+          },
+          "yAxisIndex": 0,
+          "barGap": "20%",
+          "emphasis": {
+            "itemStyle": {
+              "shadowBlur": 10,
+              "shadowColor": "rgba(0,0,0,0.3)"
+            }
+          }
+        },
+        {
+          "name": "蒸發量",
+          "type": "bar",
+          "data": [26, 59, 90, 264, 287, 70, 175, 182, 48, 18, 60, 47],
+          "itemStyle": {
+            "color": "#87dc64"
+          },
+          "yAxisIndex": 0,
+          "barGap": "20%",
+          "emphasis": {
+            "itemStyle": {
+              "shadowBlur": 10,
+              "shadowColor": "rgba(0,0,0,0.3)"
+            }
+          }
+        },
+        {
+          "name": "平均溫度",
+          "type": "line",
+          "data": [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+          "lineStyle": {
+            "color": "#E65F5A",
+            "width": 2
+          },
+          "itemStyle": {
+            "color": "#E65F5A"
+          },
+          "symbol": "circle",
+          "symbolSize": 4,
+          "showSymbol": true,
+          "yAxisIndex": 1,
+          "smooth": true,
+          "emphasis": {
+            "itemStyle": {
+              "borderColor": "#E65F5A",
+              "borderWidth": 2
+            }
+          }
+        }
+      ],
+      "title": {
+        "text": "降雨量與溫度關係分析圖",
+        "left": "center",
+        "top": 20,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5,
+        "selectedMode": true,
+        "inactiveColor": "#ccc",
+        "selected": {
+          "降雨量": true,
+          "蒸發量": true,
+          "平均溫度": true
+        }
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "8%",
+        "top": "15%",
+        "bottom": "12%",
+        "containLabel": true
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      }
+    },
+    {
+      "chartType": "heatmap",
+      "gridWidth": 6,
+      "gridHeight": 3,
+      "gridX": 7,
+      "gridY": 5,
+      "tooltipType": "heatmap-light",
+      "xAxis": {
+        "type": "category",
+        "data": ["Q1", "Q2", "Q3", "Q4"],
+        "name": "季度",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "yAxis": {
+        "type": "category",
+        "data": ["產品A", "產品B", "產品C", "產品D", "產品E"],
+        "name": "產品類別",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "series": [
+        {
+          "name": "銷售熱力圖",
+          "type": "heatmap",
+          "data": [
+            [0, 0, 65],
+            [1, 0, 59],
+            [2, 0, 80],
+            [3, 0, 81],
+            [0, 1, 28],
+            [1, 1, 48],
+            [2, 1, 40],
+            [3, 1, 19],
+            [0, 2, 45],
+            [1, 2, 35],
+            [2, 2, 60],
+            [3, 2, 55],
+            [0, 3, 38],
+            [1, 3, 42],
+            [2, 3, 35],
+            [3, 3, 48],
+            [0, 4, 52],
+            [1, 4, 38],
+            [2, 4, 45],
+            [3, 4, 62]
+          ],
+          "label": {
+            "show": true,
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          }
+        }
+      ],
+      "title": {
+        "text": "產品銷售熱力分析圖",
+        "left": "center",
+        "top": 20,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": false
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "15%",
+        "bottom": "20%",
+        "containLabel": true
+      },
+      "visualMap": {
+        "show": true,
+        "min": 0,
+        "max": 85,
+        "left": "center",
+        "bottom": "5%",
+        "orient": "horizontal",
+        "text": ["高", "低"],
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#333"
+        },
+        "inRange": {
+          "color": ["#BEE6E1", "#64dcf0", "#005087"]
+        }
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      }
+    },
+    {
+      "chartType": "map",
+      "gridWidth": 6,
+      "gridHeight": 3,
+      "gridX": 7,
+      "gridY": 8,
+      "tooltipType": "one-row-light",
+      "mapConfig": {
+        "roam": false,
+        "zoom": 4.5,
+        "center": [121, 24],
+        "aspectScale": 0.75,
+        "layoutCenter": ["50%", "50%"],
+        "layoutSize": "80%"
+      },
+      "series": [
+        {
+          "name": "台灣各縣市資料",
+          "type": "map",
+          "showSymbol": false,
+          "map": "taiwan",
+          "data": [
+            { "name": "臺北市", "value": 2685 },
+            { "name": "新北市", "value": 4031 },
+            { "name": "桃園市", "value": 2267 },
+            { "name": "臺中市", "value": 2820 },
+            { "name": "臺南市", "value": 1885 },
+            { "name": "高雄市", "value": 2776 },
+            { "name": "臺東縣", "value": 1200 },
+            { "name": "花蓮縣", "value": 1500 }
+          ],
+          "label": {
+            "show": true,
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "itemStyle": {
+            "areaColor": "#f0f0f0",
+            "borderColor": "#999",
+            "borderWidth": 1
+          },
+          "emphasis": {
+            "label": {
+              "show": false,
+              "color": "#fff",
+              "fontSize": 12,
+              "fontWeight": "bold"
+            },
+            "itemStyle": {
+              "areaColor": "#1B6EC2",
+              "borderColor": "#fff",
+              "borderWidth": 1,
+              "shadowBlur": 10,
+              "shadowColor": "rgba(0,0,0,0.3)"
+            }
+          }
+        }
+      ],
+      "title": {
+        "text": "台灣各縣市數據分布圖",
+        "left": "center",
+        "top": 20,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": false
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "visualMap": {
+        "show": true,
+        "min": 1000,
+        "max": 5000,
+        "left": "left",
+        "top": "bottom",
+        "orient": "vertical",
+        "text": ["高", "低"],
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#333"
+        },
+        "inRange": {
+          "color": ["#BEE6E1", "#64dcf0", "#005087"]
+        }
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "5%",
+        "top": "15%",
+        "bottom": "15%",
+        "containLabel": true
+      }
+    },
+    {
+      "chartType": "pie",
+      "gridWidth": 4,
+      "gridHeight": 3,
+      "gridX": 1,
+      "gridY": 11,
+      "tooltipType": "one-row-dark",
+      "series": [
+        {
+          "name": "產品銷售佔比",
+          "type": "pie",
+          "radius": ["40%", "70%"],
+          "center": ["50%", "50%"],
+          "data": [
+            { "name": "產品A", "value": 285, "itemStyle": { "color": "#005087" } },
+            { "name": "產品B", "value": 135, "itemStyle": { "color": "#87dc64" } },
+            { "name": "產品C", "value": 195, "itemStyle": { "color": "#b491d7" } },
+            { "name": "產品D", "value": 163, "itemStyle": { "color": "#ffe664" } },
+            { "name": "產品E", "value": 197, "itemStyle": { "color": "#64dcf0" } }
+          ],
+          "label": {
+            "show": true,
+            "position": "outside",
+            "fontFamily": "sans-serif",
+            "fontSize": 11,
+            "color": "#333"
+          },
+          "emphasis": {
+            "itemStyle": {
+              "shadowBlur": 10,
+              "shadowOffsetX": 0,
+              "shadowColor": "rgba(0, 0, 0, 0.5)"
+            }
+          }
+        }
+      ],
+      "title": {
+        "text": "產品銷售佔比分析圖",
+        "left": "center",
+        "top": 10,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "5%",
+        "top": "15%",
+        "bottom": "15%",
+        "containLabel": true
+      }
+    },
+    {
+      "chartType": "stackedBar",
+      "gridWidth": 4,
+      "gridHeight": 3,
+      "gridX": 5,
+      "gridY": 11,
+      "tooltipType": "dark",
+      "xAxis": {
+        "type": "category",
+        "data": ["Q1", "Q2", "Q3", "Q4"],
+        "name": "季度",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        }
+      },
+      "yAxis": {
+        "type": "value",
+        "name": "銷售數量",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666"
+        },
+        "min": 0,
+        "max": 250,
+        "interval": 50
+      },
+      "series": [
+        {
+          "name": "智慧型產品",
+          "type": "bar",
+          "data": [65, 70, 75, 80],
+          "itemStyle": { "color": "#005087" },
+          "stack": "total"
+        },
+        {
+          "name": "傳統產品",
+          "type": "bar",
+          "data": [28, 35, 40, 45],
+          "itemStyle": { "color": "#87dc64" },
+          "stack": "total"
+        },
+        {
+          "name": "創新產品",
+          "type": "bar",
+          "data": [40, 45, 50, 55],
+          "itemStyle": { "color": "#ffe664" },
+          "stack": "total"
+        },
+        {
+          "name": "服務產品",
+          "type": "bar",
+          "data": [25, 30, 35, 40],
+          "itemStyle": { "color": "#b491d7" },
+          "stack": "total"
+        }
+      ],
+      "title": {
+        "text": "產品類別銷售堆疊分析圖",
+        "left": "center",
+        "top": 10,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "20%",
+        "bottom": "12%",
+        "containLabel": true
+      }
+    },
+    {
+      "chartType": "bubble",
+      "gridWidth": 4,
+      "gridHeight": 3,
+      "gridX": 9,
+      "gridY": 11,
+      "symbolSizeType": "sqrt",
+      "symbolSizeConfig": {
+        "min": 4,
+        "max": 100,
+        "factor": 500,
+        "base": 10
+      },
+      "tooltipType": "bubble-dark",
+      "xAxis": {
+        "type": "value",
+        "name": "GDP",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        },
+        "min": 0,
+        "max": 70000,
+        "interval": 10000
+      },
+      "yAxis": {
+        "type": "value",
+        "name": "預期壽命",
+        "nameTextStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 14,
+          "color": "#147891"
+        },
+        "axisLabel": {
+          "fontFamily": "sans-serif",
+          "fontSize": 12,
+          "color": "#666",
+          "rotate": 0
+        },
+        "min": 50,
+        "max": 90,
+        "interval": 10
+      },
+      "series": [
+        {
+          "name": "1990年數據",
+          "type": "scatter",
+          "data": [
+            [28604, 77, 17096869, "澳大利亞", 1990],
+            [31163, 77.4, 27662440, "加拿大", 1990],
+            [1516, 68, 1154605773, "中國", 1990],
+            [13670, 74.7, 10582082, "古巴", 1990],
+            [28599, 75, 4986705, "芬蘭", 1990],
+            [29476, 77.1, 56943299, "法國", 1990],
+            [31476, 75.4, 78958237, "德國", 1990],
+            [28666, 78.1, 254830, "冰島", 1990],
+            [1777, 57.7, 870601776, "印度", 1990],
+            [29550, 79.1, 122249285, "日本", 1990]
+          ],
+          "itemStyle": {
+            "color": "#005087",
+            "opacity": 0.8
+          },
+          "emphasis": {
+            "itemStyle": {
+              "borderColor": "#333",
+              "borderWidth": 2
+            }
+          }
+        },
+        {
+          "name": "2015年數據",
+          "type": "scatter",
+          "data": [
+            [44056, 81.8, 23968973, "澳大利亞", 2015],
+            [43294, 81.7, 35939927, "加拿大", 2015],
+            [13334, 76.9, 1376048943, "中國", 2015],
+            [21291, 78.5, 11389562, "古巴", 2015],
+            [38923, 80.8, 5503457, "芬蘭", 2015],
+            [37599, 81.9, 64395345, "法國", 2015],
+            [44053, 81.1, 80688545, "德國", 2015],
+            [42182, 82.8, 329425, "冰島", 2015],
+            [5903, 66.8, 1311050527, "印度", 2015],
+            [36162, 83.5, 126573481, "日本", 2015]
+          ],
+          "itemStyle": {
+            "color": "#87dc64",
+            "opacity": 0.8
+          },
+          "emphasis": {
+            "itemStyle": {
+              "borderColor": "#333",
+              "borderWidth": 2
+            }
+          }
+        }
+      ],
+      "title": {
+        "text": "國家發展水平氣泡分析圖",
+        "left": "center",
+        "top": 10,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#005087"
+        }
+      },
+      "legend": {
+        "show": true,
+        "textStyle": {
+          "fontFamily": "sans-serif",
+          "fontSize": 13,
+          "color": "#444"
+        },
+        "left": "center",
+        "bottom": 5
+      },
+      "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderWidth": 0,
+        "shadowBlur": 0,
+        "shadowColor": "transparent",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 0,
+        "textStyle": {
+          "color": "white"
+        }
+      },
+      "toolbox": {
+        "show": true,
+        "orient": "horizontal",
+        "right": 0,
+        "top": 0,
+        "feature": {
+          "saveAsImage": {
+            "show": true,
+            "title": "儲存圖片",
+            "type": "png",
+            "backgroundColor": "white"
+          },
+          "restore": {
+            "show": true,
+            "title": "重置"
+          },
+          "dataView": {
+            "show": true,
+            "title": "數據視圖",
+            "readOnly": false
+          },
+          "dataZoom": {
+            "show": true,
+            "title": {
+              "zoom": "區域縮放",
+              "back": "縮放還原"
+            }
+          },
+          "magicType": {
+            "show": true,
+            "title": "圖表類型切換",
+            "type": ["line", "bar"]
+          }
+        }
+      },
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "20%",
+        "bottom": "15%",
+        "containLabel": true
+      }
+    }
+  ]
+}

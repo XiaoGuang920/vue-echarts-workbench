@@ -1,0 +1,193 @@
+{
+  "chartType": "candlestick",
+  "gridWidth": 6,
+  "gridHeight": 4,
+  "order": 16,
+  "tooltipType": "candlestick-light",
+  "series": [
+    {
+      "name": "股價",
+      "type": "candlestick",
+      "data": [
+        [15.2, 15.8, 14.9, 15.5],
+        [15.5, 16.1, 15.1, 15.3],
+        [15.3, 16.0, 15.0, 15.9],
+        [15.9, 16.5, 15.6, 16.2],
+        [16.2, 16.8, 15.8, 15.9],
+        [15.9, 16.4, 15.2, 15.4],
+        [15.4, 16.2, 15.1, 16.0],
+        [16.0, 17.1, 15.8, 16.8],
+        [16.8, 17.2, 16.3, 16.5],
+        [16.5, 17.5, 16.2, 17.2]
+      ],
+      "itemStyle": {
+        "color": "#00AA00",
+        "color0": "#FF4444",
+        "borderColor": "#00AA00",
+        "borderColor0": "#FF4444"
+      },
+      "label": {
+        "show": false,
+        "position": "top",
+        "fontFamily": "sans-serif",
+        "fontSize": 10,
+        "color": "#333"
+      },
+      "emphasis": {
+        "itemStyle": {
+          "color": "#00AA00",
+          "color0": "#FF4444",
+          "borderColor": "#00AA00",
+          "borderColor0": "#FF4444"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "股價K線圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "category",
+    "data": [
+      "2024-01-01",
+      "2024-01-02",
+      "2024-01-03",
+      "2024-01-04",
+      "2024-01-05",
+      "2024-01-08",
+      "2024-01-09",
+      "2024-01-10",
+      "2024-01-11",
+      "2024-01-12"
+    ],
+    "name": "日期",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#1B6EC2"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#0D4F8C",
+      "rotate": 45
+    },
+    "scale": true,
+    "boundaryGap": false,
+    "axisLine": {
+      "onZero": false
+    },
+    "splitLine": {
+      "show": false
+    },
+    "min": "dataMin",
+    "max": "dataMax"
+  },
+  "yAxis": {
+    "type": "value",
+    "name": "股價 (元)",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#1B6EC2"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#0D4F8C"
+    },
+    "scale": true,
+    "splitArea": {
+      "show": true
+    }
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "10%",
+    "right": "10%",
+    "top": "15%",
+    "bottom": "15%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "color": ["#00AA00", "#FF4444"],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

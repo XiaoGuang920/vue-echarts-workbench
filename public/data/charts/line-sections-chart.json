@@ -1,0 +1,240 @@
+{
+  "chartType": "lineSections",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 2,
+  "tooltipType": "default",
+  "xAxis": {
+    "type": "category",
+    "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "name": "星期",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#147891"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#666",
+      "rotate": 0
+    }
+  },
+  "yAxis": {
+    "type": "value",
+    "name": "溫度 (°C)",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#147891"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#666"
+    },
+    "min": -5,
+    "max": 15,
+    "interval": 5
+  },
+  "series": [
+    {
+      "name": "高溫",
+      "type": "line",
+      "data": [10, 11, 13, 11, 12, 12, 9],
+      "lineStyle": {
+        "color": "#005087",
+        "width": 2
+      },
+      "itemStyle": {
+        "color": "#005087"
+      },
+      "symbol": "circle",
+      "symbolSize": 6,
+      "smooth": false,
+      "showSymbol": true,
+      "label": {
+        "show": true,
+        "position": "top",
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "color": "#333"
+      },
+      "markLine": {
+        "silent": true,
+        "symbol": "none",
+        "lineStyle": {
+          "color": "#333"
+        },
+        "data": [{ "yAxis": 12 }, { "yAxis": 9 }]
+      },
+      "markArea": {
+        "silent": true,
+        "itemStyle": {
+          "color": "rgba(255, 173, 177, 0.6)"
+        },
+        "data": [
+          [
+            {
+              "xAxis": "Tue"
+            },
+            {
+              "xAxis": "Thu"
+            }
+          ],
+          [
+            {
+              "xAxis": "Fri"
+            },
+            {
+              "xAxis": "Sat"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "低溫",
+      "type": "line",
+      "data": [1, -2, 2, 5, 3, 2, 0],
+      "lineStyle": {
+        "color": "#87dc64",
+        "width": 2
+      },
+      "itemStyle": {
+        "color": "#87dc64"
+      },
+      "symbol": "circle",
+      "symbolSize": 6,
+      "smooth": false,
+      "showSymbol": true,
+      "label": {
+        "show": true,
+        "position": "top",
+        "fontFamily": "sans-serif",
+        "fontSize": 11,
+        "color": "#333"
+      },
+      "markLine": {
+        "silent": true,
+        "symbol": "none",
+        "lineStyle": {
+          "color": "#333"
+        },
+        "data": [
+          [
+            { "xAxis": 1, "yAxis": -2 },
+            { "xAxis": 3, "yAxis": 3 }
+          ]
+        ]
+      },
+      "markArea": {
+        "silent": true,
+        "itemStyle": {
+          "color": "rgba(255, 173, 177, 0.3)"
+        },
+        "data": [
+          [
+            {
+              "xAxis": "Wed"
+            },
+            {
+              "xAxis": "Fri"
+            }
+          ]
+        ]
+      }
+    }
+  ],
+  "title": {
+    "text": "溫度變化分段線圖",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#444"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "5%",
+    "right": "10%",
+    "top": "15%",
+    "bottom": "12%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

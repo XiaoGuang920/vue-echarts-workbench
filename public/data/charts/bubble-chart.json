@@ -1,0 +1,195 @@
+{
+  "chartType": "bubble",
+  "gridWidth": 4,
+  "gridHeight": 3,
+  "order": 8,
+  "symbolSizeType": "sqrt",
+  "symbolSizeConfig": {
+    "min": 4,
+    "max": 100,
+    "factor": 500,
+    "base": 10
+  },
+  "tooltipType": "bubble-dark",
+  "xAxis": {
+    "type": "value",
+    "name": "GDP",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#147891"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#666",
+      "rotate": 0
+    },
+    "min": 0,
+    "max": 70000,
+    "interval": 10000
+  },
+  "yAxis": {
+    "type": "value",
+    "name": "預期壽命",
+    "nameTextStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 14,
+      "color": "#147891"
+    },
+    "axisLabel": {
+      "fontFamily": "sans-serif",
+      "fontSize": 12,
+      "color": "#666",
+      "rotate": 0
+    },
+    "min": 50,
+    "max": 90,
+    "interval": 10
+  },
+  "series": [
+    {
+      "name": "1990年數據",
+      "type": "scatter",
+      "data": [
+        [28604, 77, 17096869, "澳大利亞", 1990],
+        [31163, 77.4, 27662440, "加拿大", 1990],
+        [1516, 68, 1154605773, "中國", 1990],
+        [13670, 74.7, 10582082, "古巴", 1990],
+        [28599, 75, 4986705, "芬蘭", 1990],
+        [29476, 77.1, 56943299, "法國", 1990],
+        [31476, 75.4, 78958237, "德國", 1990],
+        [28666, 78.1, 254830, "冰島", 1990],
+        [1777, 57.7, 870601776, "印度", 1990],
+        [29550, 79.1, 122249285, "日本", 1990]
+      ],
+      "itemStyle": {
+        "color": "#005087",
+        "opacity": 0.8
+      },
+      "emphasis": {
+        "itemStyle": {
+          "borderColor": "#333",
+          "borderWidth": 2
+        }
+      }
+    },
+    {
+      "name": "2015年數據",
+      "type": "scatter",
+      "data": [
+        [44056, 81.8, 23968973, "澳大利亞", 2015],
+        [43294, 81.7, 35939927, "加拿大", 2015],
+        [13334, 76.9, 1376048943, "中國", 2015],
+        [21291, 78.5, 11389562, "古巴", 2015],
+        [38923, 80.8, 5503457, "芬蘭", 2015],
+        [37599, 81.9, 64395345, "法國", 2015],
+        [44053, 81.1, 80688545, "德國", 2015],
+        [42182, 82.8, 329425, "冰島", 2015],
+        [5903, 66.8, 1311050527, "印度", 2015],
+        [36162, 83.5, 126573481, "日本", 2015]
+      ],
+      "itemStyle": {
+        "color": "#87dc64",
+        "opacity": 0.8
+      },
+      "emphasis": {
+        "itemStyle": {
+          "borderColor": "#333",
+          "borderWidth": 2
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "國家發展水平氣泡分析圖",
+    "left": "center",
+    "top": 10,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#444"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "5%",
+    "right": "10%",
+    "top": "20%",
+    "bottom": "15%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "chartType": "liquidFill",
+  "gridWidth": 6,
+  "gridHeight": 2,
+  "order": 17,
+  "tooltipType": "one-row-dark",
+  "data": [0.68, 0.45, 0.25],
+  "series": [
+    {
+      "type": "liquidFill",
+      "data": [0.68, 0.45, 0.25],
+      "color": ["#64dcf0", "#ffe664", "#87dc64"],
+      "radius": "75%",
+      "center": ["50%", "55%"],
+      "shape": "circle",
+      "amplitude": 20,
+      "waveAnimation": true,
+      "waveLength": "80%",
+      "outline": {
+        "show": true,
+        "borderDistance": 3,
+        "itemStyle": {
+          "borderColor": "#0D4F8C",
+          "borderWidth": 5
+        }
+      },
+      "backgroundStyle": {
+        "color": "#f8f9fa"
+      },
+      "itemStyle": {
+        "opacity": 0.8,
+        "shadowBlur": 20,
+        "shadowColor": "rgba(0, 0, 0, 0.25)"
+      },
+      "label": {
+        "show": true,
+        "fontFamily": "sans-serif",
+        "fontSize": 20,
+        "color": "#b8e6f0",
+        "insideColor": "gray",
+        "formatter": "{c}%"
+      },
+      "emphasis": {
+        "itemStyle": {
+          "opacity": 1
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "專案進度監控",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "value",
+    "show": false
+  },
+  "yAxis": {
+    "type": "value",
+    "show": false
+  },
+  "legend": {
+    "show": false,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

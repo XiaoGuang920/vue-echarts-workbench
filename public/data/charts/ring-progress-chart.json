@@ -1,0 +1,194 @@
+{
+  "chartType": "ringProgress",
+  "gridWidth": 6,
+  "gridHeight": 4,
+  "order": 20,
+  "tooltipType": "light",
+  "progressData": [
+    { "name": "CPU使用率", "value": 75, "max": 100 },
+    { "name": "記憶體使用率", "value": 62, "max": 100 },
+    { "name": "磁碟使用率", "value": 45, "max": 100 },
+    { "name": "網路使用率", "value": 88, "max": 100 }
+  ],
+  "series": [
+    {
+      "name": "CPU使用率",
+      "type": "pie",
+      "radius": ["25%", "35%"],
+      "center": ["25%", "30%"],
+      "data": [
+        { "value": 75, "name": "使用中", "itemStyle": { "color": "#64dcf0" } },
+        { "value": 25, "name": "剩餘", "itemStyle": { "color": "#f1f2f6" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "center",
+        "formatter": "{a}\n{d}%",
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "gray"
+      },
+      "labelLine": { "show": false }
+    },
+    {
+      "name": "記憶體使用率",
+      "type": "pie",
+      "radius": ["25%", "35%"],
+      "center": ["75%", "30%"],
+      "data": [
+        { "value": 62, "name": "使用中", "itemStyle": { "color": "#ffe664" } },
+        { "value": 38, "name": "剩餘", "itemStyle": { "color": "#f1f2f6" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "center",
+        "formatter": "{a}\n{d}%",
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "gray"
+      },
+      "labelLine": { "show": false }
+    },
+    {
+      "name": "磁碟使用率",
+      "type": "pie",
+      "radius": ["25%", "35%"],
+      "center": ["25%", "70%"],
+      "data": [
+        { "value": 45, "name": "使用中", "itemStyle": { "color": "#87dc64" } },
+        { "value": 55, "name": "剩餘", "itemStyle": { "color": "#f1f2f6" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "center",
+        "formatter": "{a}\n{d}%",
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "gray"
+      },
+      "labelLine": { "show": false }
+    },
+    {
+      "name": "網路使用率",
+      "type": "pie",
+      "radius": ["25%", "35%"],
+      "center": ["75%", "70%"],
+      "data": [
+        { "value": 88, "name": "使用中", "itemStyle": { "color": "#005087" } },
+        { "value": 12, "name": "剩餘", "itemStyle": { "color": "#f1f2f6" } }
+      ],
+      "label": {
+        "show": true,
+        "position": "center",
+        "formatter": "{a}\n{d}%",
+        "fontFamily": "sans-serif",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "gray"
+      },
+      "labelLine": { "show": false }
+    }
+  ],
+  "title": {
+    "text": "環形進度圖 - 系統狀態",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "xAxis": {
+    "type": "value",
+    "show": false
+  },
+  "yAxis": {
+    "type": "value",
+    "show": false
+  },
+  "legend": {
+    "show": true,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 13,
+      "color": "#0D4F8C"
+    },
+    "left": "center",
+    "bottom": 5
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "grid": {
+    "left": "5%",
+    "right": "5%",
+    "top": "15%",
+    "bottom": "15%",
+    "containLabel": true
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}

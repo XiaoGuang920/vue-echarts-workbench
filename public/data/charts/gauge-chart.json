@@ -1,0 +1,153 @@
+{
+  "chartType": "gauge",
+  "gridWidth": 4,
+  "gridHeight": 3,
+  "order": 13,
+  "tooltipType": "default",
+  "series": [
+    {
+      "name": "系統監控",
+      "type": "gauge",
+      "center": ["50%", "60%"],
+      "radius": "75%",
+      "min": 0,
+      "max": 100,
+      "startAngle": 225,
+      "endAngle": -45,
+      "splitNumber": 10,
+      "data": [
+        {
+          "name": "CPU使用率",
+          "value": 65,
+          "itemStyle": {
+            "color": "#005087"
+          },
+          "title": {
+            "fontFamily": "sans-serif",
+            "fontSize": 14,
+            "color": "#333"
+          },
+          "detail": {
+            "fontFamily": "sans-serif",
+            "fontSize": 20,
+            "color": "#005087",
+            "formatter": "{value}%"
+          }
+        }
+      ],
+      "axisLine": {
+        "lineStyle": {
+          "width": 10,
+          "color": [
+            [0.2, "#FF6E76"],
+            [0.8, "#FDDD60"],
+            [1, "#58D9F9"]
+          ]
+        }
+      },
+      "axisTick": {
+        "length": 12,
+        "lineStyle": {
+          "color": "auto",
+          "width": 2
+        }
+      },
+      "splitLine": {
+        "length": 20,
+        "lineStyle": {
+          "color": "auto",
+          "width": 5
+        }
+      },
+      "axisLabel": {
+        "fontFamily": "sans-serif",
+        "fontSize": 12,
+        "color": "#666",
+        "distance": -60,
+        "formatter": "{value}%"
+      },
+      "pointer": {
+        "itemStyle": {
+          "color": "#005087"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "系統監控儀表盤",
+    "left": "center",
+    "top": 20,
+    "textStyle": {
+      "fontFamily": "sans-serif",
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "color": "#005087"
+    }
+  },
+  "legend": {
+    "show": false
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item",
+    "backgroundColor": "transparent",
+    "borderColor": "transparent",
+    "borderWidth": 0,
+    "shadowBlur": 0,
+    "shadowColor": "transparent",
+    "shadowOffsetX": 0,
+    "shadowOffsetY": 0,
+    "textStyle": {
+      "color": "white"
+    }
+  },
+  "dataZoom": [
+    {
+      "type": "inside",
+      "start": 50,
+      "end": 100
+    },
+    {
+      "show": true,
+      "type": "slider",
+      "top": "90%",
+      "start": 50,
+      "end": 100
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "orient": "horizontal",
+    "right": 0,
+    "top": 0,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "儲存圖片",
+        "type": "png",
+        "backgroundColor": "white"
+      },
+      "restore": {
+        "show": true,
+        "title": "重置"
+      },
+      "dataView": {
+        "show": true,
+        "title": "數據視圖",
+        "readOnly": false
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "區域縮放",
+          "back": "縮放還原"
+        }
+      },
+      "magicType": {
+        "show": true,
+        "title": "圖表類型切換",
+        "type": ["line", "bar"]
+      }
+    }
+  }
+}
