@@ -196,7 +196,7 @@
     {
       "chartType": "line",
       "gridWidth": 6,
-      "gridHeight": 3,
+      "gridHeight": 2,
       "gridX": 1,
       "gridY": 2,
       "symbolSizeType": "default",
@@ -365,7 +365,7 @@
     {
       "chartType": "lineSections",
       "gridWidth": 6,
-      "gridHeight": 3,
+      "gridHeight": 2,
       "gridX": 7,
       "gridY": 2,
       "tooltipType": "default",
@@ -594,7 +594,7 @@
       "gridWidth": 6,
       "gridHeight": 6,
       "gridX": 1,
-      "gridY": 5,
+      "gridY": 4,
       "tooltipType": "default",
       "xAxis": {
         "type": "category",
@@ -818,7 +818,7 @@
       "gridWidth": 6,
       "gridHeight": 3,
       "gridX": 7,
-      "gridY": 5,
+      "gridY": 4,
       "tooltipType": "heatmap-light",
       "xAxis": {
         "type": "category",
@@ -979,22 +979,19 @@
       "gridWidth": 6,
       "gridHeight": 3,
       "gridX": 7,
-      "gridY": 8,
+      "gridY": 7,
       "tooltipType": "one-row-light",
-      "mapConfig": {
-        "roam": false,
-        "zoom": 4.5,
-        "center": [121, 24],
-        "aspectScale": 0.75,
-        "layoutCenter": ["50%", "50%"],
-        "layoutSize": "80%"
-      },
       "series": [
         {
-          "name": "台灣各縣市資料",
           "type": "map",
-          "showSymbol": false,
           "map": "taiwan",
+          "roam": true,
+          "zoom": 5,
+          "center": [121, 24],
+          "aspectScale": 0.75,
+          "layoutCenter": ["55%", "45%"],
+          "layoutSize": "80%",
+          "nameProperty": "COUNTYNAME",
           "data": [
             { "name": "臺北市", "value": 2685 },
             { "name": "新北市", "value": 4031 },
@@ -1007,9 +1004,13 @@
           ],
           "label": {
             "show": true,
-            "fontFamily": "sans-serif",
-            "fontSize": 11,
-            "color": "#333"
+            "color": "#333",
+            "backgroundColor": "transparent",
+            "borderColor": "transparent",
+            "symbol": "none",
+            "fontSize": 10,
+            "fontWeight": "bold",
+            "formatter": "{b}"
           },
           "itemStyle": {
             "areaColor": "#f0f0f0",
@@ -1018,7 +1019,7 @@
           },
           "emphasis": {
             "label": {
-              "show": false,
+              "show": true,
               "color": "#fff",
               "fontSize": 12,
               "fontWeight": "bold"
@@ -1026,15 +1027,15 @@
             "itemStyle": {
               "areaColor": "#1B6EC2",
               "borderColor": "#fff",
-              "borderWidth": 1,
-              "shadowBlur": 10,
-              "shadowColor": "rgba(0,0,0,0.3)"
+              "borderWidth": 2
             }
           }
         }
       ],
       "title": {
         "text": "台灣各縣市數據分布圖",
+        "subtext": "Data from twgeojson",
+        "sublink": "https://github.com/g0v/twgeojson",
         "left": "center",
         "top": 20,
         "textStyle": {
@@ -1047,26 +1048,12 @@
       "legend": {
         "show": false
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "visualMap": {
         "show": true,
-        "min": 1000,
+        "min": 0,
         "max": 5000,
-        "left": "left",
-        "top": "bottom",
+        "left": 20,
+        "bottom": 20,
         "orient": "vertical",
         "text": ["高", "低"],
         "textStyle": {
@@ -1074,8 +1061,9 @@
           "fontSize": 12,
           "color": "#333"
         },
+        "calculable": true,
         "inRange": {
-          "color": ["#BEE6E1", "#64dcf0", "#005087"]
+          "color": ["#f0f0f0", "#BEE6E1", "#64dcf0", "#005087"]
         }
       },
       "toolbox": {
@@ -1098,27 +1086,8 @@
             "show": true,
             "title": "數據視圖",
             "readOnly": false
-          },
-          "dataZoom": {
-            "show": true,
-            "title": {
-              "zoom": "區域縮放",
-              "back": "縮放還原"
-            }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
-      },
-      "grid": {
-        "left": "5%",
-        "right": "5%",
-        "top": "15%",
-        "bottom": "15%",
-        "containLabel": true
       }
     },
     {
@@ -1126,7 +1095,7 @@
       "gridWidth": 4,
       "gridHeight": 3,
       "gridX": 1,
-      "gridY": 11,
+      "gridY": 10,
       "tooltipType": "one-row-dark",
       "series": [
         {
@@ -1240,7 +1209,7 @@
       "gridWidth": 4,
       "gridHeight": 3,
       "gridX": 5,
-      "gridY": 11,
+      "gridY": 10,
       "tooltipType": "dark",
       "xAxis": {
         "type": "category",
@@ -1388,7 +1357,7 @@
       "gridWidth": 4,
       "gridHeight": 3,
       "gridX": 9,
-      "gridY": 11,
+      "gridY": 10,
       "symbolSizeType": "sqrt",
       "symbolSizeConfig": {
         "min": 4,
