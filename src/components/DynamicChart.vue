@@ -9,7 +9,7 @@
           </span>
           <template v-if="renderChartJson.trend">
             <span
-              class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-sm font-medium"
+              class="inline-flex items-center gap-1 rounded-full py-1 pl-2 pr-3 text-sm font-medium"
               :class="getTrendStyle(renderChartJson.trend)"
             >
               <FontAwesomeIcon v-if="renderChartJson.trend.type === 'up'" :icon="faArrowUp" />
@@ -49,6 +49,7 @@ import type {
   DashboardMetricTrend,
 } from '@/types/echarts'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import * as echarts from 'echarts'
 import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
 import { SVGRenderer, CanvasRenderer } from 'echarts/renderers'
@@ -69,6 +70,7 @@ import {
   BrushComponent,
   TimelineComponent,
 } from 'echarts/components'
+import { chartTransformService, type TransformResult } from '@/services'
 
 use([
   SVGRenderer,
@@ -360,6 +362,24 @@ const formattedValue = computed(() => {
   return value.toLocaleString()
 })
 
+async function registerMapIfNeeded(options: ExtendedEChartsOption) {
+  if (options.chartType === 'map' && options._geoJsonData && options._mapName) {
+    try {
+      echarts.registerMap(options._mapName, options._geoJsonData)
+    } catch (error) {
+      console.error('Failed to register map:', error)
+      throw error
+    }
+  }
+}
+
+function cleanChartOptions(options: ExtendedEChartsOption): ExtendedEChartsOption {
+  const { _geoJsonData, _mapName, ...cleanOptions } = options
+  void _geoJsonData
+  void _mapName
+  return cleanOptions
+}
+
 watch(
   () => props.chartJson,
   async (newChartJson: ExtendedEChartsOption) => {
@@ -403,7 +423,15 @@ watch(
         }
 
         await nextTick()
-        renderChartJson.value = newChartJson
+
+        const transformResult: TransformResult = await chartTransformService.transform(newChartJson)
+        if (!transformResult.success) {
+          console.error('Chart transformation failed:', transformResult.msg)
+        }
+
+        await registerMapIfNeeded(transformResult.data)
+
+        renderChartJson.value = cleanChartOptions(transformResult.data)
 
         if (
           newChartJson.chartType === 'dashboardMetric' &&

@@ -2,7 +2,13 @@
   <div class="container">
     <div class="popup-model" :class="{ active: showFilterPopup }" @click="togglePopup">
       <div class="popup-content shadow-lg" @click.stop>
-        <div class="popup-body" @scroll="handleScroll">
+        <div
+          v-if="filterConfigs.length == 0"
+          class="flex h-[50vh] flex-col items-center justify-center gap-2 p-4 text-xl font-bold text-[#374151]"
+        >
+          <FontAwesomeIcon :icon="faFaceFrown" class="mb-2 text-6xl" />沒有任何篩選項
+        </div>
+        <div v-else class="popup-body" @scroll="handleScroll">
           <div class="scroll-container">
             <div class="grid h-full gap-4 sm:grid-cols-2">
               <div v-for="(filter, index) in filterConfigs" :key="index" class="input-group">
@@ -182,10 +188,13 @@
     </div>
 
     <div
-      class="relative flex items-center gap-2 rounded-full bg-[#DDDDDD] px-8 py-4 text-base font-bold text-[#44444e] shadow-lg"
+      class="relative flex items-center gap-2 rounded-full bg-[#DDDDDD] px-8 py-4 text-base text-[#44444e] shadow-lg"
     >
-      <FontAwesomeIcon :icon="faFilter" class="text-[#456882]" />
-      篩選項
+      <span class="w-fit flex-shrink-0 font-bold">
+        <FontAwesomeIcon :icon="faFilter" class="text-[#456882]" />
+        篩選項
+      </span>
+
       <div class="filter-tag-container">
         <div v-for="(tag, index) in filterTags" class="filter-tag" :key="index">
           <div class="filter-tag-hole"></div>
@@ -193,15 +202,12 @@
         </div>
       </div>
 
-      <button
-        class="absolute right-6 top-1/2 -translate-y-1/2 text-base text-[#456882]"
-        @click="togglePopup"
-      >
+      <button class="text-base text-[#456882]" @click="togglePopup">
         <FontAwesomeIcon :icon="faGear" />
       </button>
     </div>
 
-    <div class="chart-grid mt-6">
+    <div ref="chartGridRef" class="chart-grid mt-6">
       <div
         v-for="(chart, index) in chartConfigs"
         :key="index"
@@ -223,6 +229,7 @@ import {
   faChevronDown,
   faRepeat,
   faMagnifyingGlass,
+  faFaceFrown,
 } from '@fortawesome/free-solid-svg-icons'
 import DatePicker from '@vuepic/vue-datepicker'
 import DynamicChart from '@/components/DynamicChart.vue'
@@ -249,6 +256,9 @@ const datePickerRefs = ref<{ [key: string]: InstanceType<typeof DatePicker> | nu
 const selectRefs = ref<{ [key: number]: HTMLElement }>({})
 const selectActives = ref<{ [key: number]: boolean }>({})
 const dropdownPositions = ref<{ [key: number]: { top: number; left: number; width: number } }>({})
+
+const chartGridRef = ref<HTMLDivElement>()
+const itemBaseSize = ref(180)
 
 function togglePopup() {
   closeAllSelects()
@@ -551,6 +561,24 @@ function applyFilter() {
   togglePopup()
 }
 
+function updateItemSize() {
+  if (!chartGridRef.value) return
+
+  const containerWidth = chartGridRef.value.clientWidth
+
+  if (containerWidth < 768) {
+    itemBaseSize.value = 80
+  } else if (containerWidth < 1024) {
+    itemBaseSize.value = 80
+  } else if (containerWidth < 1280) {
+    itemBaseSize.value = 120
+  } else if (containerWidth < 1536) {
+    itemBaseSize.value = 160
+  } else {
+    itemBaseSize.value = 160
+  }
+}
+
 function getGridStyles(chart: ExtendedEChartsOption) {
   const x = chart.gridX || 1
   const y = chart.gridY || 1
@@ -563,16 +591,18 @@ function getGridStyles(chart: ExtendedEChartsOption) {
   return {
     gridColumn: `${x} / ${endX}`,
     gridRow: `${y} / ${endY}`,
-    minHeight: `${height * 180}px`,
+    minHeight: `${height * itemBaseSize.value}px`,
   }
 }
 
+const throttledUpdateSize = throttle(updateItemSize, 100)
+
 onMounted(async () => {
   try {
-    const response = await fetch(
-      `${import.meta.env.BASE_URL}/data/pages/demo-charts.json`
-    )
+    const baseUrl = import.meta.env.BASE_URL
+    const url = baseUrl ? `${baseUrl}data/pages/demo-charts.json` : `data/pages/demo-charts.json`
 
+    const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -585,18 +615,22 @@ onMounted(async () => {
       initFilters()
 
       setFilterTags()
-
-      chartConfigs.value = data.charts || []
     }
+
+    updateItemSize()
+
+    chartConfigs.value = data.charts || []
   } catch (error) {
     console.error('Error fetching chart data:', error)
   }
 
   window.addEventListener('resize', throttledHandleResize)
+  window.addEventListener('resize', throttledUpdateSize)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', throttledHandleResize)
+  window.removeEventListener('resize', throttledUpdateSize)
 })
 </script>
 

@@ -2,7 +2,13 @@
   <div class="container">
     <div class="popup-model" :class="{ active: showFilterPopup }" @click="toggleFilterPopup">
       <div class="popup-content shadow-lg" @click.stop>
-        <div class="popup-body" @scroll="handleScroll">
+        <div
+          v-if="filterConfigs.length == 0"
+          class="flex h-[50vh] flex-col items-center justify-center gap-2 p-4 text-xl font-bold text-[#374151]"
+        >
+          <FontAwesomeIcon :icon="faFaceFrown" class="mb-2 text-6xl" />沒有任何篩選項
+        </div>
+        <div v-else class="popup-body" @scroll="handleScroll">
           <div class="scroll-container">
             <div class="grid h-full gap-4 sm:grid-cols-2">
               <div v-for="(filter, index) in filterConfigs" :key="index" class="input-group">
@@ -204,7 +210,6 @@
             class="ml-14 h-full w-full resize-none bg-transparent p-0 text-base text-[#37353E] outline-none"
             placeholder="在此編輯 ECharts 配置..."
             v-model="editorJson"
-            @input="handleJsonChange"
             @scroll="handleTextareaScroll"
             spellcheck="false"
           ></textarea>
@@ -225,9 +230,11 @@
               class="w-4/5 rounded border border-gray-300 px-3 py-2"
               type="text"
               placeholder="請輸入 API"
+              v-model="chartConfigsEndpoint"
             />
             <button
               class="flex h-10 w-1/5 items-center justify-center gap-2 rounded-md bg-[#59AC77] px-4 py-2 text-sm font-semibold text-white hover:bg-[#3A6F43]"
+              @click="fetchTestEndpoint"
             >
               <FontAwesomeIcon :icon="faRocket" />測試
             </button>
@@ -235,11 +242,13 @@
           <div class="flex h-10 w-full gap-4">
             <button
               class="flex h-10 w-1/2 items-center justify-center gap-2 rounded-md bg-[#456882] px-4 py-2 text-sm font-semibold text-white hover:bg-[#234C6A]"
+              @click="fetchSampleData"
             >
               <FontAwesomeIcon :icon="faCloudArrowDown" />載入範例
             </button>
             <button
               class="flex h-10 w-1/2 items-center justify-center gap-2 rounded-md bg-[#456882] px-4 py-2 text-sm font-semibold text-white hover:bg-[#234C6A]"
+              @click="downloadJson"
             >
               <FontAwesomeIcon :icon="faDownload" />下載 JSON
             </button>
@@ -247,11 +256,13 @@
           <div class="flex h-10 w-full gap-4">
             <button
               class="flex h-10 w-1/2 items-center justify-center gap-2 rounded-md bg-gray-500 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-600"
+              @click="resetJson"
             >
               <FontAwesomeIcon :icon="faRetweet" />重製
             </button>
             <button
               class="flex h-10 w-1/2 items-center justify-center gap-2 rounded-md bg-[#456882] px-4 py-2 text-sm font-semibold text-white hover:bg-[#234C6A]"
+              @click="applyJson"
             >
               <FontAwesomeIcon :icon="faFloppyDisk" />套用
             </button>
@@ -261,10 +272,13 @@
     </div>
 
     <div
-      class="relative flex items-center gap-2 rounded-full bg-[#DDDDDD] px-8 py-4 text-base font-bold text-[#44444e] shadow-lg"
+      class="relative flex items-center gap-2 rounded-full bg-[#DDDDDD] px-8 py-4 text-base text-[#44444e] shadow-lg"
     >
-      <FontAwesomeIcon :icon="faFilter" class="text-[#456882]" />
-      篩選項
+      <span class="w-fit flex-shrink-0 font-bold">
+        <FontAwesomeIcon :icon="faFilter" class="text-[#456882]" />
+        篩選項
+      </span>
+
       <div class="filter-tag-container">
         <div v-for="(tag, index) in filterTags" class="filter-tag" :key="index">
           <div class="filter-tag-hole"></div>
@@ -272,21 +286,30 @@
         </div>
       </div>
 
-      <button
-        class="absolute right-6 top-1/2 -translate-y-1/2 text-base text-[#456882]"
-        @click="toggleFilterPopup"
-      >
+      <button class="text-base text-[#456882]" @click="toggleFilterPopup">
         <FontAwesomeIcon :icon="faGear" />
       </button>
     </div>
 
-    <div class="chart-grid mt-6">
+    <div ref="chartGridRef" class="chart-grid mt-6">
+      <div v-if="dragState.isDragging" class="drag-preview-box" :style="getDragPreviewStyles()">
+        <FontAwesomeIcon :icon="faArrowDownUpAcrossLine" />拖曳到這
+      </div>
+
       <div
         v-for="(chart, index) in chartConfigs"
         :key="index"
         :style="getGridStyles(chart)"
-        class="overflow-hidden rounded-lg bg-white shadow-lg"
+        class="relative overflow-hidden rounded-lg bg-white shadow-lg"
       >
+        <button
+          class="absolute left-2 top-2 z-10 cursor-move text-lg text-[#456882]"
+          @mousedown="startDrag($event, index)"
+          @touchStart="startDrag($event, index)"
+        >
+          <FontAwesomeIcon :icon="faBraille" />
+        </button>
+
         <DynamicChart :key="index" :chart-json="chart" />
       </div>
     </div>
@@ -313,6 +336,9 @@ import {
   faDownload,
   faRetweet,
   faFloppyDisk,
+  faFaceFrown,
+  faBraille,
+  faArrowDownUpAcrossLine,
 } from '@fortawesome/free-solid-svg-icons'
 import DatePicker from '@vuepic/vue-datepicker'
 import DynamicChart from '@/components/DynamicChart.vue'
@@ -323,7 +349,7 @@ const filterConfigs = ref<filterOption[]>([])
 const chartConfigs = ref<ExtendedEChartsOption[]>([])
 
 const showFilterPopup = ref(false)
-const showChartSettingsPopup = ref(true)
+const showChartSettingsPopup = ref(false)
 
 const textValues = ref<{ [key: number]: string }>({})
 const numberValues = ref<{ [key: number]: number }>({})
@@ -341,16 +367,189 @@ const selectRefs = ref<{ [key: number]: HTMLElement }>({})
 const selectActives = ref<{ [key: number]: boolean }>({})
 const dropdownPositions = ref<{ [key: number]: { top: number; left: number; width: number } }>({})
 
+const chartGridRef = ref<HTMLDivElement>()
+const itemBaseSize = ref(180)
+
 const editorJson = ref('')
 const jsonErrorMsg = ref('')
 
 const textareaRef = ref<HTMLTextAreaElement>()
 const lineNumbersRef = ref<HTMLDivElement>()
 
+const chartConfigsEndpoint = ref('')
+
+const dragState = ref({
+  isDragging: false,
+  activeIndex: -1,
+  startX: 0,
+  startY: 0,
+  startGridX: 0,
+  startGridY: 0,
+  currentX: 0,
+  currentY: 0,
+  previewGridX: 0,
+  previewGridY: 0,
+})
+
 const lineCount = computed(() => {
   if (!editorJson.value) return 1
   return Math.max(1, editorJson.value.split('\n').length)
 })
+
+function startDrag(event: MouseEvent | TouchEvent, chartIndex: number) {
+  event.preventDefault()
+  event.stopPropagation()
+
+  const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX
+  const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY
+
+  const chart = chartConfigs.value[chartIndex]
+
+  dragState.value = {
+    isDragging: true,
+    activeIndex: chartIndex,
+    startX: clientX,
+    startY: clientY,
+    startGridX: chart.gridX || 1,
+    startGridY: chart.gridY || 1,
+    currentX: clientX,
+    currentY: clientY,
+    previewGridX: chart.gridX || 1,
+    previewGridY: chart.gridY || 1,
+  }
+
+  document.addEventListener('mousemove', handleDrag)
+  document.addEventListener('mouseup', stopDrag)
+  document.addEventListener('touchmove', handleDrag, { passive: false })
+  document.addEventListener('touchend', stopDrag)
+
+  document.body.style.cursor = 'grabbing'
+  document.body.style.userSelect = 'none'
+}
+
+function handleDrag(event: MouseEvent | TouchEvent) {
+  if (!dragState.value.isDragging) return
+
+  event.preventDefault()
+
+  const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX
+  const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY
+
+  dragState.value.currentX = clientX
+  dragState.value.currentY = clientY
+
+  // 計算網格位置變化
+  const deltaX = clientX - dragState.value.startX
+  const deltaY = clientY - dragState.value.startY
+
+  // 根據移動距離計算新的網格位置
+  const gridStepX = Math.round(deltaX / (itemBaseSize.value + 24)) // 24 是 gap
+  const gridStepY = Math.round(deltaY / (itemBaseSize.value + 24))
+
+  const newGridX = Math.max(1, dragState.value.startGridX + gridStepX)
+  const newGridY = Math.max(1, dragState.value.startGridY + gridStepY)
+
+  // 更新預覽位置
+  dragState.value.previewGridX = newGridX
+  dragState.value.previewGridY = newGridY
+}
+
+function stopDrag() {
+  if (!dragState.value.isDragging) return
+
+  const chart = chartConfigs.value[dragState.value.activeIndex]
+
+  if (chart) {
+    const finalX = dragState.value.previewGridX
+    const finalY = dragState.value.previewGridY
+    if (isValidPosition(dragState.value.activeIndex, finalX, finalY)) {
+      chart.gridX = finalX
+      chart.gridY = finalY
+    }
+  }
+
+  const updateJson = {
+    filters: filterConfigs.value,
+    charts: chartConfigs.value,
+  }
+  editorJson.value = JSON.stringify(updateJson, null, 2)
+  jsonErrorMsg.value = ''
+
+  document.removeEventListener('mousemove', handleDrag)
+  document.removeEventListener('mouseup', stopDrag)
+  document.removeEventListener('touchmove', handleDrag)
+  document.removeEventListener('touchend', stopDrag)
+
+  document.body.style.cursor = ''
+  document.body.style.userSelect = ''
+
+  dragState.value = {
+    isDragging: false,
+    activeIndex: -1,
+    startX: 0,
+    startY: 0,
+    startGridX: 0,
+    startGridY: 0,
+    currentX: 0,
+    currentY: 0,
+    previewGridX: 0,
+    previewGridY: 0,
+  }
+}
+
+function isValidPosition(chartIndex: number, x: number, y: number): boolean {
+  const chart = chartConfigs.value[chartIndex]
+  if (!chart) return false
+
+  const width = chart.gridWidth || 4
+  const height = chart.gridHeight || 4
+
+  return !chartConfigs.value.some((otherChart, index) => {
+    if (index === chartIndex) return false
+
+    const chart1 = {
+      x1: x,
+      y1: y,
+      x2: x + width,
+      y2: y + height,
+    }
+
+    const chart2 = {
+      x1: otherChart.gridX || 1,
+      y1: otherChart.gridY || 1,
+      x2: (otherChart.gridX || 1) + (otherChart.gridWidth || 4),
+      y2: (otherChart.gridY || 1) + (otherChart.gridHeight || 4),
+    }
+
+    return !(
+      chart1.x2 <= chart2.x1 ||
+      chart1.x1 >= chart2.x2 ||
+      chart1.y2 <= chart2.y1 ||
+      chart1.y1 >= chart2.y2
+    )
+  })
+}
+
+function getDragPreviewStyles() {
+  if (!dragState.value.isDragging) return {}
+
+  const chart = chartConfigs.value[dragState.value.activeIndex]
+  if (!chart) return {}
+
+  const x = dragState.value.previewGridX
+  const y = dragState.value.previewGridY
+  const width = chart.gridWidth || 4
+  const height = chart.gridHeight || 4
+
+  const endX = x + width
+  const endY = y + height
+
+  return {
+    gridColumn: `${x} / ${endX}`,
+    gridRow: `${y} / ${endY}`,
+    minHeight: `${height * itemBaseSize.value}px`,
+  }
+}
 
 function toggleFilterPopup() {
   closeAllSelects()
@@ -437,18 +636,6 @@ function handleTextareaScroll() {
   }
 }
 
-function handleJsonChange() {
-  try {
-    const parsed = JSON.parse(editorJson.value)
-    chartConfigs.value = parsed as ExtendedEChartsOption[]
-
-    jsonErrorMsg.value = ''
-  } catch (error) {
-    console.error('Invalid JSON format:', error)
-    jsonErrorMsg.value = `Invalid JSON format: ${(error as Error).message}`
-  }
-}
-
 function handleScroll() {
   Object.keys(selectActives.value).forEach((key: string) => {
     const keyAsNumber = parseInt(key, 10)
@@ -524,6 +711,8 @@ function getMultiSelectLabel(filter: filterOption, values: string[]): string {
 }
 
 function setFilterTags() {
+  filterTags.value = {}
+
   Object.keys(textValues.value).forEach(key => {
     const keyAsNumber = parseInt(key, 10)
     if (textValues.value[keyAsNumber]) {
@@ -614,6 +803,14 @@ function setFilterTags() {
 }
 
 function initFilters() {
+  textValues.value = {}
+  numberValues.value = {}
+  dateValues.value = {}
+  dateRangeValues.value = {}
+  numberRangeValues.value = {}
+  singleSelectValues.value = {}
+  multiSelectValues.value = {}
+
   filterConfigs.value.forEach((filter: filterOption, index: number) => {
     if (filter.default === undefined || filter.default == null) return
 
@@ -675,6 +872,24 @@ function applyFilter() {
   toggleFilterPopup()
 }
 
+function updateItemSize() {
+  if (!chartGridRef.value) return
+
+  const containerWidth = chartGridRef.value.clientWidth
+
+  if (containerWidth < 768) {
+    itemBaseSize.value = 80
+  } else if (containerWidth < 1024) {
+    itemBaseSize.value = 80
+  } else if (containerWidth < 1280) {
+    itemBaseSize.value = 120
+  } else if (containerWidth < 1536) {
+    itemBaseSize.value = 160
+  } else {
+    itemBaseSize.value = 160
+  }
+}
+
 function getGridStyles(chart: ExtendedEChartsOption) {
   const x = chart.gridX || 1
   const y = chart.gridY || 1
@@ -687,13 +902,35 @@ function getGridStyles(chart: ExtendedEChartsOption) {
   return {
     gridColumn: `${x} / ${endX}`,
     gridRow: `${y} / ${endY}`,
-    minHeight: `${height * 180}px`,
+    minHeight: `${height * itemBaseSize.value}px`,
   }
 }
 
-onMounted(async () => {
+const throttledUpdateSize = throttle(updateItemSize, 100)
+
+async function fetchSampleData() {
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}/data/pages/demo-charts.json`)
+    const baseUrl = import.meta.env.BASE_URL
+    const url = baseUrl ? `${baseUrl}data/pages/demo-charts.json` : `data/pages/demo-charts.json`
+
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+
+    editorJson.value = JSON.stringify(data, null, 2)
+  } catch (error) {
+    console.error('Error fetching chart data:', error)
+  }
+}
+
+async function fetchTestEndpoint() {
+  if (!chartConfigsEndpoint.value) return
+
+  try {
+    const response = await fetch(chartConfigsEndpoint.value)
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
@@ -701,26 +938,71 @@ onMounted(async () => {
 
     const data = await response.json()
 
-    if (data.filters) {
-      filterConfigs.value = data.filters
-
-      initFilters()
-
-      setFilterTags()
-    }
-
-    chartConfigs.value = data.charts || []
-
     editorJson.value = JSON.stringify(data, null, 2)
   } catch (error) {
     console.error('Error fetching chart data:', error)
+    jsonErrorMsg.value = `Error fetching chart data: ${(error as Error).message}`
   }
+}
+
+function downloadJson() {
+  if (editorJson.value.trim() === '') return
+
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(editorJson.value)
+  const downloadAnchorNode = document.createElement('a')
+  downloadAnchorNode.setAttribute('href', dataStr)
+  downloadAnchorNode.setAttribute('download', 'chart-configs.json')
+  document.body.appendChild(downloadAnchorNode)
+  downloadAnchorNode.click()
+  downloadAnchorNode.remove()
+}
+
+function applyJson() {
+  filterConfigs.value = []
+  chartConfigs.value = []
+
+  initFilters()
+
+  setFilterTags()
+
+  if (editorJson.value.trim() === '') return
+
+  try {
+    const parsed = JSON.parse(editorJson.value)
+
+    if (parsed.filters) {
+      filterConfigs.value = parsed.filters
+    }
+
+    if (parsed.charts) {
+      chartConfigs.value = parsed.charts
+    }
+
+    initFilters()
+
+    setFilterTags()
+
+    toggleChartSettingsPopup()
+  } catch (error) {
+    console.error('Invalid JSON format:', error)
+    jsonErrorMsg.value = `Invalid JSON format: ${(error as Error).message}`
+  }
+}
+
+function resetJson() {
+  editorJson.value = ''
+}
+
+onMounted(async () => {
+  updateItemSize()
 
   window.addEventListener('resize', throttledHandleResize)
+  window.addEventListener('resize', throttledUpdateSize)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', throttledHandleResize)
+  window.removeEventListener('resize', throttledUpdateSize)
 })
 </script>
 
@@ -782,5 +1064,22 @@ onUnmounted(() => {
 
 .chart-settings.popup-model.active .popup-content {
   transform: translateX(0);
+}
+
+.drag-preview-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  gap: 0.5rem;
+  color: #3b82f6;
+  border: 2px dashed #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 999;
+  pointer-events: none;
+  animation: pulse-border 1s infinite;
 }
 </style>

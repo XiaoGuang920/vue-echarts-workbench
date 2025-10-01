@@ -11,9 +11,11 @@ import { RouterLink, RouterView } from 'vue-router'
         class="absolute left-4 top-1/2 flex -translate-y-1/2 transform cursor-pointer items-center"
         @click="$router.push({ name: 'home' })"
       >
-        <span class="ml-4 text-2xl font-bold text-[#44444E]"> vue-echarts-workbench </span>
+        <span class="ml-4 text-2xl font-bold text-[#44444E] sm:text-base md:text-lg lg:text-xl">
+          vue-echarts-workbench
+        </span>
       </div>
-      <div class="flex gap-16 text-xl text-[#44444E]">
+      <div class="flex gap-16 text-xl text-[#44444E] sm:gap-8 md:text-base lg:gap-12 lg:text-lg">
         <RouterLink to="/demo">Demo</RouterLink>
         <RouterLink to="/editor">Editor</RouterLink>
         <RouterLink to="/previewer">Previewer</RouterLink>

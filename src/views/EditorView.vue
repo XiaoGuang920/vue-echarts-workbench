@@ -76,7 +76,7 @@ import {
 import type { ExtendedEChartsOption } from '@/types/echarts'
 
 const showPopup = ref(false)
-const activeChart = ref('Line Chart')
+const activeChart = ref('Map Chart')
 
 const chartOptions: Record<string, string> = {
   'Line Chart': 'line-chart.json',
@@ -150,8 +150,10 @@ async function loadChartOption(chartName: string) {
   }
 
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}/data/charts/${chartJsonFile}`)
+    const baseUrl = import.meta.env.BASE_URL
+    const url = baseUrl ? `${baseUrl}data/charts/${chartJsonFile}` : `data/charts/${chartJsonFile}`
 
+    const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
