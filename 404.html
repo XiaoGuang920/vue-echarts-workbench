@@ -4,13 +4,10 @@
   const path = window.location.pathname
 
   if (path.startsWith(base)) {
-    alert('AAAAA')
-    alert(path.substring(base.length))
     sessionStorage.setItem('redirect', path.substring(base.length))
 
     window.location.replace(base + '/')
   } else {
-    alert('BBBB')
     window.location.replace(base + '/')
   }
 </script>
