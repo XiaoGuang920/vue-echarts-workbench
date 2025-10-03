@@ -45,7 +45,7 @@
       }
     },
     {
-      "name": "溫度",
+      "name": "平均溫度",
       "type": "value",
       "position": "right",
       "nameTextStyle": {

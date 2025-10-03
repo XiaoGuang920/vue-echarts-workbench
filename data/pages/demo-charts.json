@@ -532,7 +532,7 @@
       "gridHeight": 6,
       "gridX": 1,
       "gridY": 4,
-      "tooltipType": "default",
+      "tooltipType": "mixLineBarLight",
       "xAxis": {
         "type": "category",
         "data": [
@@ -586,7 +586,7 @@
           }
         },
         {
-          "name": "溫度",
+          "name": "平均溫度",
           "type": "value",
           "position": "right",
           "nameTextStyle": {
@@ -693,20 +693,6 @@
           "平均溫度": true
         }
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "grid": {
         "left": "5%",
         "right": "8%",
@@ -726,26 +712,12 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
       }
@@ -1244,14 +1216,7 @@
       "gridHeight": 3,
       "gridX": 9,
       "gridY": 10,
-      "symbolSizeType": "sqrt",
-      "symbolSizeConfig": {
-        "min": 4,
-        "max": 100,
-        "factor": 500,
-        "base": 10
-      },
-      "tooltipType": "bubble-dark",
+      "tooltipType": "bubbleLight",
       "xAxis": {
         "type": "value",
         "name": "GDP",
@@ -1363,19 +1328,12 @@
         "left": "center",
         "bottom": 5
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "20%",
+        "bottom": "15%",
+        "containLabel": true
       },
       "toolbox": {
         "show": true,
@@ -1389,35 +1347,14 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
-      },
-      "grid": {
-        "left": "5%",
-        "right": "10%",
-        "top": "20%",
-        "bottom": "15%",
-        "containLabel": true
       }
     }
   ]
