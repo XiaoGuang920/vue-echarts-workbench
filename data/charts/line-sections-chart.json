@@ -1,9 +1,10 @@
 {
   "chartType": "lineSections",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 2,
-  "tooltipType": "default",
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "lineSectionLight",
   "xAxis": {
     "type": "category",
     "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -167,38 +168,24 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
   "grid": {
-    "left": "5%",
+    "left": "8%",
     "right": "10%",
-    "top": "15%",
-    "bottom": "12%",
+    "top": "20%",
+    "bottom": "15%",
     "containLabel": true
   },
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

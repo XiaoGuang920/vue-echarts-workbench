@@ -1,17 +1,13 @@
 {
   "chartType": "radar",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 8,
-  "symbolSizeType": "default",
-  "symbolSizeConfig": {
-    "min": 6,
-    "max": 12,
-    "factor": 100,
-    "base": 10
-  },
-  "tooltipType": "radar-light",
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "radarLight",
   "radar": {
+    "center": ["50%", "50%"],
+    "radius": "65%",
     "indicator": [
       { "name": "效能", "max": 100 },
       { "name": "可靠性", "max": 100 },
@@ -96,7 +92,7 @@
   "title": {
     "text": "產品特性雷達圖",
     "left": "center",
-    "top": 20,
+    "top": 10,
     "textStyle": {
       "fontFamily": "sans-serif",
       "fontSize": 18,
@@ -113,27 +109,6 @@
     },
     "left": "center",
     "bottom": 5
-  },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "grid": {
-    "left": "5%",
-    "right": "10%",
-    "top": "25%",
-    "bottom": "12%",
-    "containLabel": true
   },
   "dataZoom": [
     {

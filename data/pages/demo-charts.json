@@ -199,14 +199,7 @@
       "gridHeight": 2,
       "gridX": 1,
       "gridY": 2,
-      "symbolSizeType": "default",
-      "symbolSizeConfig": {
-        "min": 6,
-        "max": 12,
-        "factor": 100,
-        "base": 10
-      },
-      "tooltipType": "default",
+      "tooltipType": "lineLight",
       "series": [
         {
           "name": "產品A",
@@ -305,25 +298,11 @@
         "left": "center",
         "bottom": 5
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "grid": {
-        "left": "5%",
+        "left": "8%",
         "right": "10%",
-        "top": "25%",
-        "bottom": "12%",
+        "top": "20%",
+        "bottom": "15%",
         "containLabel": true
       },
       "toolbox": {
@@ -338,26 +317,12 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
       }
@@ -368,7 +333,7 @@
       "gridHeight": 2,
       "gridX": 7,
       "gridY": 2,
-      "tooltipType": "default",
+      "tooltipType": "lineSectionsLight",
       "xAxis": {
         "type": "category",
         "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -532,25 +497,11 @@
         "left": "center",
         "bottom": 5
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "grid": {
-        "left": "5%",
+        "left": "8%",
         "right": "10%",
-        "top": "15%",
-        "bottom": "12%",
+        "top": "20%",
+        "bottom": "15%",
         "containLabel": true
       },
       "toolbox": {
@@ -565,26 +516,12 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
       }
@@ -980,7 +917,7 @@
       "gridHeight": 3,
       "gridX": 7,
       "gridY": 7,
-      "tooltipType": "one-row-light",
+      "tooltipType": "map-light",
       "series": [
         {
           "type": "map",
@@ -991,7 +928,6 @@
           "aspectScale": 0.75,
           "layoutCenter": ["55%", "45%"],
           "layoutSize": "80%",
-          "nameProperty": "COUNTYNAME",
           "data": [
             { "name": "臺北市", "value": 2685 },
             { "name": "新北市", "value": 4031 },
@@ -1007,7 +943,6 @@
             "color": "#333",
             "backgroundColor": "transparent",
             "borderColor": "transparent",
-            "symbol": "none",
             "fontSize": 10,
             "fontWeight": "bold",
             "formatter": "{b}"
@@ -1096,7 +1031,7 @@
       "gridHeight": 3,
       "gridX": 1,
       "gridY": 10,
-      "tooltipType": "one-row-dark",
+      "tooltipType": "pieLight",
       "series": [
         {
           "name": "產品銷售佔比",
@@ -1147,20 +1082,6 @@
         "left": "center",
         "bottom": 5
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "toolbox": {
         "show": true,
         "orient": "horizontal",
@@ -1195,13 +1116,6 @@
             "type": ["line", "bar"]
           }
         }
-      },
-      "grid": {
-        "left": "5%",
-        "right": "5%",
-        "top": "15%",
-        "bottom": "15%",
-        "containLabel": true
       }
     },
     {
@@ -1210,7 +1124,7 @@
       "gridHeight": 3,
       "gridX": 5,
       "gridY": 10,
-      "tooltipType": "dark",
+      "tooltipType": "stackedBarLight",
       "xAxis": {
         "type": "category",
         "data": ["Q1", "Q2", "Q3", "Q4"],
@@ -1295,19 +1209,12 @@
         "left": "center",
         "bottom": 5
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
+      "grid": {
+        "left": "5%",
+        "right": "10%",
+        "top": "20%",
+        "bottom": "12%",
+        "containLabel": true
       },
       "toolbox": {
         "show": true,
@@ -1321,35 +1228,14 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
-      },
-      "grid": {
-        "left": "5%",
-        "right": "10%",
-        "top": "20%",
-        "bottom": "12%",
-        "containLabel": true
       }
     },
     {

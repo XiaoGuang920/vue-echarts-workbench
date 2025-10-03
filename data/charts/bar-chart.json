@@ -1,16 +1,10 @@
 {
   "chartType": "bar",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 3,
-  "symbolSizeType": "default",
-  "symbolSizeConfig": {
-    "min": 6,
-    "max": 12,
-    "factor": 100,
-    "base": 10
-  },
-  "tooltipType": "default",
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "barLight",
   "series": [
     {
       "name": "產品銷售額",
@@ -86,38 +80,24 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
   "grid": {
-    "left": "5%",
-    "right": "10%",
-    "top": "25%",
-    "bottom": "12%",
+    "left": "8%",
+    "right": "15%",
+    "top": "20%",
+    "bottom": "15%",
     "containLabel": true
   },
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

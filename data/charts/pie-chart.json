@@ -1,9 +1,10 @@
 {
   "chartType": "pie",
   "gridWidth": 4,
-  "gridHeight": 3,
-  "order": 6,
-  "tooltipType": "dark",
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "pieLight",
   "series": [
     {
       "name": "產品銷售佔比",
@@ -54,41 +55,6 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "grid": {
-    "left": "5%",
-    "right": "5%",
-    "top": "15%",
-    "bottom": "15%",
-    "containLabel": true
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",
