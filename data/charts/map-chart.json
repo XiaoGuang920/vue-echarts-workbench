@@ -4,7 +4,7 @@
   "gridHeight": 4,
   "gridX": 0,
   "gridY": 0,
-  "tooltipType": "map-light",
+  "tooltipType": "mapLight",
   "series": [
     {
       "type": "map",

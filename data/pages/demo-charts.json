@@ -725,10 +725,10 @@
     {
       "chartType": "heatmap",
       "gridWidth": 6,
-      "gridHeight": 3,
+      "gridHeight": 2,
       "gridX": 7,
       "gridY": 4,
-      "tooltipType": "heatmap-light",
+      "tooltipType": "heatmapLight",
       "xAxis": {
         "type": "category",
         "data": ["Q1", "Q2", "Q3", "Q4"],
@@ -809,20 +809,6 @@
       "legend": {
         "show": false
       },
-      "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderWidth": 0,
-        "shadowBlur": 0,
-        "shadowColor": "transparent",
-        "shadowOffsetX": 0,
-        "shadowOffsetY": 0,
-        "textStyle": {
-          "color": "white"
-        }
-      },
       "grid": {
         "left": "5%",
         "right": "10%",
@@ -835,7 +821,7 @@
         "min": 0,
         "max": 85,
         "left": "center",
-        "bottom": "5%",
+        "bottom": "10%",
         "orient": "horizontal",
         "text": ["高", "低"],
         "textStyle": {
@@ -859,26 +845,12 @@
             "type": "png",
             "backgroundColor": "white"
           },
-          "restore": {
-            "show": true,
-            "title": "重置"
-          },
-          "dataView": {
-            "show": true,
-            "title": "數據視圖",
-            "readOnly": false
-          },
           "dataZoom": {
             "show": true,
             "title": {
               "zoom": "區域縮放",
               "back": "縮放還原"
             }
-          },
-          "magicType": {
-            "show": true,
-            "title": "圖表類型切換",
-            "type": ["line", "bar"]
           }
         }
       }
@@ -886,10 +858,10 @@
     {
       "chartType": "map",
       "gridWidth": 6,
-      "gridHeight": 3,
+      "gridHeight": 4,
       "gridX": 7,
-      "gridY": 7,
-      "tooltipType": "map-light",
+      "gridY": 6,
+      "tooltipType": "mapLight",
       "series": [
         {
           "type": "map",
