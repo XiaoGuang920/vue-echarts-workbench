@@ -1,3 +1,20 @@
+<script>
+  const base = '/vue-echarts-workbench'
+
+  const path = window.location.pathname
+
+  if (path.startsWith(base)) {
+    alert('AAAAA')
+    alert(path.substring(base.length))
+    sessionStorage.setItem('redirect', path.substring(base.length))
+
+    window.location.replace(base + '/')
+  } else {
+    alert('BBBB')
+    window.location.replace(base + '/')
+  }
+</script>
+
 <div class="main">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -106,22 +123,6 @@
     </g>
   </svg>
 </div>
-
-<script>
-  const base = '/vue-echarts-workbench'
-
-  const path = window.location.pathname
-
-  if (path.startsWith(base)) {
-    alert('AAAAA')
-    sessionStorage.setItem('redirect', path.substring(base.length))
-
-    window.location.replace(base + '/')
-  } else {
-    alert('BBBB')
-    window.location.replace(base + '/')
-  }
-</script>
 
 <style>
   body {
