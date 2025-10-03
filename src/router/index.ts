@@ -32,4 +32,21 @@ const router = createRouter({
   ],
 })
 
+router.beforeEach((to, from, next) => {
+  const redirectPath = sessionStorage.getItem('redirect')
+
+  if (redirectPath && to.path !== redirectPath && from.path !== redirectPath) {
+    const targetRoute = router.resolve(redirectPath)
+    if (targetRoute.matched.length > 0) {
+      sessionStorage.removeItem('redirect')
+      next(redirectPath)
+      return
+    } else {
+      sessionStorage.removeItem('redirect')
+    }
+  }
+
+  next()
+})
+
 export default router

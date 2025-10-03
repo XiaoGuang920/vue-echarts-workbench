@@ -1,9 +1,10 @@
 {
   "chartType": "funnel",
   "gridWidth": 4,
-  "gridHeight": 3,
-  "order": 12,
-  "tooltipType": "one-row-light",
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "funnelLight",
   "series": [
     {
       "name": "銷售漏斗",
@@ -11,9 +12,7 @@
       "left": "10%",
       "top": 60,
       "width": "80%",
-      "height": "80%",
-      "min": 0,
-      "max": 1000,
+      "height": "70%",
       "minSize": "0%",
       "maxSize": "100%",
       "orient": "vertical",
@@ -67,31 +66,17 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

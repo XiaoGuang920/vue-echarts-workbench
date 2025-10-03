@@ -71,7 +71,7 @@ export interface ExtendedEChartsOption
   gridWidth?: number
   gridHeight?: number
   label?: string
-  tooltipType?: 'light' | 'dark'
+  tooltipType?: string
   customTheme?: string
 
   graphic?: any

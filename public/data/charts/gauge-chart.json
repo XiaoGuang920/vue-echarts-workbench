@@ -1,9 +1,10 @@
 {
   "chartType": "gauge",
   "gridWidth": 4,
-  "gridHeight": 3,
-  "order": 13,
-  "tooltipType": "default",
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "gaugeLight",
   "series": [
     {
       "name": "系統監控",
@@ -63,7 +64,7 @@
         "fontFamily": "sans-serif",
         "fontSize": 12,
         "color": "#666",
-        "distance": -60,
+        "distance": -70,
         "formatter": "{value}%"
       },
       "pointer": {
@@ -87,34 +88,6 @@
   "legend": {
     "show": false
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

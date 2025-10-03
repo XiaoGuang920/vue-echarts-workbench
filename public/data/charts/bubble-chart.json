@@ -1,16 +1,10 @@
 {
   "chartType": "bubble",
   "gridWidth": 4,
-  "gridHeight": 3,
-  "order": 8,
-  "symbolSizeType": "sqrt",
-  "symbolSizeConfig": {
-    "min": 4,
-    "max": 100,
-    "factor": 500,
-    "base": 10
-  },
-  "tooltipType": "bubble-dark",
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "bubbleLight",
   "xAxis": {
     "type": "value",
     "name": "GDP",
@@ -122,20 +116,6 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
   "grid": {
     "left": "5%",
     "right": "10%",
@@ -146,14 +126,14 @@
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

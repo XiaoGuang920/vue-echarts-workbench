@@ -2,9 +2,9 @@
   "chartType": "map",
   "gridWidth": 4,
   "gridHeight": 4,
-  "gridX": 1,
-  "gridY": 1,
-  "tooltipType": "one-row-light",
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "mapLight",
   "series": [
     {
       "type": "map",
@@ -15,7 +15,6 @@
       "aspectScale": 0.75,
       "layoutCenter": ["55%", "45%"],
       "layoutSize": "80%",
-      "nameProperty": "COUNTYNAME",
       "data": [
         { "name": "臺北市", "value": 2685 },
         { "name": "新北市", "value": 4031 },
@@ -31,7 +30,6 @@
         "color": "#333",
         "backgroundColor": "transparent",
         "borderColor": "transparent",
-        "symbol": "none",
         "fontSize": 10,
         "fontWeight": "bold",
         "formatter": "{b}"
