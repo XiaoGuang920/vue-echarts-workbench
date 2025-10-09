@@ -1,9 +1,10 @@
 {
   "chartType": "liquidFill",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 17,
-  "tooltipType": "one-row-dark",
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "liquidFillLight",
   "data": [0.68, 0.45, 0.25],
   "series": [
     {
@@ -59,51 +60,14 @@
     }
   },
   "xAxis": {
-    "type": "value",
     "show": false
   },
   "yAxis": {
-    "type": "value",
     "show": false
   },
   "legend": {
-    "show": false,
-    "textStyle": {
-      "fontFamily": "sans-serif",
-      "fontSize": 13,
-      "color": "#0D4F8C"
-    },
-    "left": "center",
-    "bottom": 5
+    "show": false
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

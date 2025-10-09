@@ -1,15 +1,10 @@
 {
   "chartType": "ringProgress",
-  "gridWidth": 6,
+  "gridWidth": 4,
   "gridHeight": 4,
-  "order": 20,
-  "tooltipType": "light",
-  "progressData": [
-    { "name": "CPU使用率", "value": 75, "max": 100 },
-    { "name": "記憶體使用率", "value": 62, "max": 100 },
-    { "name": "磁碟使用率", "value": 45, "max": 100 },
-    { "name": "網路使用率", "value": 88, "max": 100 }
-  ],
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "ringProgressLight",
   "series": [
     {
       "name": "CPU使用率",
@@ -112,7 +107,7 @@
     "show": false
   },
   "legend": {
-    "show": true,
+    "show": false,
     "textStyle": {
       "fontFamily": "sans-serif",
       "fontSize": 13,
@@ -121,41 +116,6 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "grid": {
-    "left": "5%",
-    "right": "5%",
-    "top": "15%",
-    "bottom": "15%",
-    "containLabel": true
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

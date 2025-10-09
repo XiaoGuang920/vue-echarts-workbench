@@ -1,9 +1,10 @@
 {
   "chartType": "sunburst",
-  "gridWidth": 6,
+  "gridWidth": 4,
   "gridHeight": 4,
-  "order": 17,
-  "tooltipType": "one-row-light",
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "sunburstLight",
   "series": [
     {
       "name": "組織結構",
@@ -177,34 +178,6 @@
   "legend": {
     "show": false
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

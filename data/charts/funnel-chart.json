@@ -10,7 +10,7 @@
       "name": "銷售漏斗",
       "type": "funnel",
       "left": "10%",
-      "top": 60,
+      "top": "15%",
       "width": "80%",
       "height": "70%",
       "minSize": "0%",

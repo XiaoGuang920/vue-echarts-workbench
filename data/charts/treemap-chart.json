@@ -1,42 +1,13 @@
 {
   "chartType": "treemap",
-  "gridWidth": 6,
+  "gridWidth": 4,
   "gridHeight": 4,
-  "order": 18,
-  "tooltipType": "one-row-light",
-  "data": [
-    {
-      "name": "亞洲市場",
-      "value": 50,
-      "itemStyle": { "color": "#b8e6f0" },
-      "children": [
-        { "name": "中國", "value": 25, "itemStyle": { "color": "#fff2a8" } },
-        { "name": "日本", "value": 15, "itemStyle": { "color": "#c8e6a8" } },
-        { "name": "韓國", "value": 10, "itemStyle": { "color": "#d4c5e8" } }
-      ]
-    },
-    {
-      "name": "歐洲市場",
-      "value": 30,
-      "itemStyle": { "color": "#7fb3d3" },
-      "children": [
-        { "name": "德國", "value": 12, "itemStyle": { "color": "#ffcf9f" } },
-        { "name": "法國", "value": 10, "itemStyle": { "color": "#b8d0ff" } },
-        { "name": "英國", "value": 8, "itemStyle": { "color": "#ffb8b8" } }
-      ]
-    },
-    {
-      "name": "美洲市場",
-      "value": 20,
-      "itemStyle": { "color": "#92eec0" },
-      "children": [
-        { "name": "美國", "value": 15, "itemStyle": { "color": "#d2aff5" } },
-        { "name": "加拿大", "value": 5, "itemStyle": { "color": "#febcd4" } }
-      ]
-    }
-  ],
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "treemapLight",
   "series": [
     {
+      "name": "市場份額",
       "type": "treemap",
       "data": [
         {
@@ -69,7 +40,7 @@
           ]
         }
       ],
-      "width": "80%",
+      "width": "90%",
       "height": "80%",
       "top": "15%",
       "roam": false,
@@ -96,7 +67,7 @@
         "fontFamily": "sans-serif",
         "fontSize": 12,
         "color": "#fff",
-        "formatter": "{b}: {c}"
+        "formatter": "{b}"
       },
       "upperLabel": {
         "show": true,
@@ -105,6 +76,34 @@
         "fontSize": 14,
         "color": "#fff"
       },
+      "levels": [
+        {
+          "itemStyle": {
+            "borderColor": "#00000060",
+            "borderWidth": 3,
+            "gapWidth": 0
+          },
+          "upperLabel": {
+            "show": true,
+            "fontSize": 16,
+            "color": "#fff",
+            "formatter": "{b}"
+          }
+        },
+        {
+          "itemStyle": {
+            "borderColor": "#00000040",
+            "borderWidth": 1,
+            "gapWidth": 2
+          },
+          "label": {
+            "show": true,
+            "fontSize": 12,
+            "color": "#333",
+            "formatter": "{b}"
+          }
+        }
+      ],
       "itemStyle": {
         "borderColor": "#666666",
         "borderWidth": 1,
@@ -142,34 +141,6 @@
     "type": "value",
     "show": false
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",
