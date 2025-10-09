@@ -532,7 +532,7 @@
       "gridHeight": 6,
       "gridX": 1,
       "gridY": 4,
-      "tooltipType": "mixLineBarLight",
+      "tooltipType": "mixLineBarDetailLight",
       "xAxis": {
         "type": "category",
         "data": [
