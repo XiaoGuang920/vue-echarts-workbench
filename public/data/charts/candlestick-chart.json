@@ -1,30 +1,32 @@
 {
   "chartType": "candlestick",
-  "gridWidth": 6,
+  "gridWidth": 4,
   "gridHeight": 4,
-  "order": 16,
-  "tooltipType": "candlestick-light",
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "candlestickLight",
   "series": [
     {
       "name": "股價",
       "type": "candlestick",
       "data": [
-        [15.2, 15.8, 14.9, 15.5],
-        [15.5, 16.1, 15.1, 15.3],
-        [15.3, 16.0, 15.0, 15.9],
-        [15.9, 16.5, 15.6, 16.2],
-        [16.2, 16.8, 15.8, 15.9],
-        [15.9, 16.4, 15.2, 15.4],
-        [15.4, 16.2, 15.1, 16.0],
-        [16.0, 17.1, 15.8, 16.8],
-        [16.8, 17.2, 16.3, 16.5],
-        [16.5, 17.5, 16.2, 17.2]
+        [20.0, 21.2, 19.8, 21.5],
+        [21.2, 20.5, 20.8, 22.0],
+        [20.5, 21.6, 19.9, 21.8],
+        [21.6, 22.3, 21.0, 22.5],
+        [22.3, 21.9, 21.8, 23.2],
+        [21.9, 22.1, 21.5, 22.8],
+        [22.1, 23.0, 21.7, 23.5],
+        [23.0, 23.8, 22.5, 24.2],
+        [23.8, 23.4, 23.2, 24.0],
+        [23.4, 24.5, 23.0, 24.8]
       ],
       "itemStyle": {
         "color": "#00AA00",
         "color0": "#FF4444",
         "borderColor": "#00AA00",
-        "borderColor0": "#FF4444"
+        "borderColor0": "#FF4444",
+        "borderWidth": 1
       },
       "label": {
         "show": false,
@@ -110,7 +112,7 @@
     }
   },
   "legend": {
-    "show": true,
+    "show": false,
     "textStyle": {
       "fontFamily": "sans-serif",
       "fontSize": 13,
@@ -118,20 +120,6 @@
     },
     "left": "center",
     "bottom": 5
-  },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
   },
   "grid": {
     "left": "10%",
@@ -143,14 +131,14 @@
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

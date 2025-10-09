@@ -1,17 +1,10 @@
 {
   "chartType": "boxplot",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 23,
-  "tooltipType": "boxplot-light",
-  "categories": ["產品A", "產品B", "產品C", "產品D", "產品E"],
-  "data": [
-    [650, 830, 920, 980, 1070],
-    [760, 800, 850, 880, 960],
-    [620, 840, 860, 880, 970],
-    [720, 780, 820, 860, 950],
-    [740, 810, 840, 870, 950]
-  ],
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "boxplotLight",
   "series": [
     {
       "name": "產品銷售數據",
@@ -121,31 +114,17 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
   "dataZoom": [
     {
       "type": "inside",
-      "start": 50,
+      "start": 0,
       "end": 100
     },
     {
       "show": true,
       "type": "slider",
       "top": "90%",
-      "start": 50,
+      "start": 0,
       "end": 100
     }
   ],

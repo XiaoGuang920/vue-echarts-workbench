@@ -1,9 +1,10 @@
 {
   "chartType": "tree",
-  "gridWidth": 6,
+  "gridWidth": 4,
   "gridHeight": 4,
-  "order": 15,
-  "tooltipType": "one-row-dark",
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "treeLight",
   "series": [
     {
       "name": "組織架構",
@@ -146,34 +147,6 @@
   "legend": {
     "show": false
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

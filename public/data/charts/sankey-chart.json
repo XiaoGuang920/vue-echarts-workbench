@@ -1,9 +1,10 @@
 {
   "chartType": "sankey",
-  "gridWidth": 6,
-  "gridHeight": 2,
-  "order": 16,
-  "tooltipType": "one-row-light",
+  "gridWidth": 4,
+  "gridHeight": 4,
+  "gridX": 0,
+  "gridY": 0,
+  "tooltipType": "sankeyLight",
   "series": [
     {
       "type": "sankey",
@@ -29,7 +30,6 @@
         { "source": "忠實客戶", "target": "推薦客戶", "value": 30 },
         { "source": "推薦客戶", "target": "推薦新用戶", "value": 20 }
       ],
-      "layout": "none",
       "emphasis": {
         "focus": "adjacency"
       },
@@ -76,34 +76,6 @@
     "left": "center",
     "bottom": 5
   },
-  "tooltip": {
-    "show": true,
-    "trigger": "item",
-    "backgroundColor": "transparent",
-    "borderColor": "transparent",
-    "borderWidth": 0,
-    "shadowBlur": 0,
-    "shadowColor": "transparent",
-    "shadowOffsetX": 0,
-    "shadowOffsetY": 0,
-    "textStyle": {
-      "color": "white"
-    }
-  },
-  "dataZoom": [
-    {
-      "type": "inside",
-      "start": 50,
-      "end": 100
-    },
-    {
-      "show": true,
-      "type": "slider",
-      "top": "90%",
-      "start": 50,
-      "end": 100
-    }
-  ],
   "toolbox": {
     "show": true,
     "orient": "horizontal",

@@ -11,7 +11,7 @@
                 class="flex aspect-square flex-col items-center justify-center rounded bg-gray-200 p-4 text-base font-semibold text-gray-800 hover:bg-gray-300"
                 @click="loadChartOption(chartName)"
               >
-                <FontAwesomeIcon :icon="faHandSpock" class="mb-8 text-5xl" />
+                <FontAwesomeIcon :icon="faCompassDrafting" class="mb-8 text-5xl" />
                 {{ chartName }}
               </button>
             </div>
@@ -68,7 +68,7 @@
 import { onMounted, ref, computed } from 'vue'
 import DynamicChart from '@/components/DynamicChart.vue'
 import {
-  faHandSpock,
+  faCompassDrafting,
   faXmark,
   faChartSimple,
   faCircleExclamation,

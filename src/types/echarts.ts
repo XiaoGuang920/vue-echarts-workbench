@@ -1,4 +1,4 @@
-import type { EChartsOption } from 'echarts'
+import type { EChartsOption, SeriesOption } from 'echarts'
 
 import type {
   LineChart,
@@ -62,9 +62,7 @@ export type DashboardMetric = {
   description: string
 }
 
-export interface ExtendedEChartsOption
-  extends Omit<EChartsOption, 'graphic'>,
-    DashboardMetricTrend {
+export interface ExtendedEChartsOption extends Omit<EChartsOption, 'graphic'> {
   chartType?: string
   gridX?: number
   gridY?: number

@@ -3,7 +3,6 @@ import type { ExtendedEChartsOption } from '@/types/echarts'
 
 import { TooltipProcessor } from './processors'
 import {
-  MapChartTransformer,
   LineChartTransformer,
   LineSectionChartTransformer,
   BarChartTransformer,
@@ -17,6 +16,19 @@ import {
   HeatmapChartTransformer,
   FunnelChartTransformer,
   GaugeChartTransformer,
+  MapChartTransformer,
+  TreeChartTransformer,
+  CandlestickChartTransformer,
+  SunburstChartTransformer,
+  GraphChartTransformer,
+  SankeyChartTransformer,
+  TreemapChartTransformer,
+  LiquidFillChartTransformer,
+  PolarBarChartTransformer,
+  RingProgressChartTransformer,
+  ThemeRiverChartTransformer,
+  ParallelChartTransformer,
+  BoxplotChartTransformer,
 } from './transformers'
 
 /**
@@ -41,6 +53,18 @@ class ChartTransformService {
     this.register('funnel', new FunnelChartTransformer())
     this.register('gauge', new GaugeChartTransformer())
     this.register('map', new MapChartTransformer())
+    this.register('tree', new TreeChartTransformer())
+    this.register('candlestick', new CandlestickChartTransformer())
+    this.register('sunburst', new SunburstChartTransformer())
+    this.register('graph', new GraphChartTransformer())
+    this.register('sankey', new SankeyChartTransformer())
+    this.register('treemap', new TreemapChartTransformer())
+    this.register('liquidFill', new LiquidFillChartTransformer())
+    this.register('polarBar', new PolarBarChartTransformer())
+    this.register('ringProgress', new RingProgressChartTransformer())
+    this.register('themeRiver', new ThemeRiverChartTransformer())
+    this.register('parallel', new ParallelChartTransformer())
+    this.register('boxplot', new BoxplotChartTransformer())
   }
 
   /**
