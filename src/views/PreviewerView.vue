@@ -153,6 +153,15 @@
                     </Transition>
                   </template>
                 </div>
+                <div class="quick-select">
+                  <button
+                    v-for="select in filter.quickSelect"
+                    :key="select.label"
+                    @click="handleQuickSelect(index, select.value)"
+                  >
+                    {{ select.label }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -627,6 +636,117 @@ function getDropdownStyle(index: number) {
     left: `${position.left}px`,
     width: `${position.width}px`,
     zIndex: 10000,
+  }
+}
+
+/**
+ * 處理快速選擇按鈕點擊事件
+ * @param filterIndex 篩選項索引
+ * @param quickSelectValue 快速選擇的值
+ */
+function handleQuickSelect(filterIndex: number, quickSelectValue: string | number[]) {
+  const filter = filterConfigs.value[filterIndex]
+
+  if (!filter) return
+
+  switch (filter.type) {
+    case 'dateRange':
+      handleDateRangeQuickSelect(filterIndex, quickSelectValue as string)
+      break
+
+    case 'numberRange':
+      if (Array.isArray(quickSelectValue) && quickSelectValue.length === 2) {
+        handleNumberRangeQuickSelect(filterIndex, quickSelectValue as [number, number])
+      } else {
+        console.warn(
+          `Invalid quick select value for numberRange: expected [number, number], got:`,
+          quickSelectValue
+        )
+      }
+      break
+
+    default:
+      console.warn(`Quick select not supported for filter type: ${filter.type}`)
+  }
+}
+
+/**
+ * 處理日期範圍的快速選擇
+ * @param filterIndex 篩選項索引
+ * @param value 快速選擇值（如 'last_7_days', 'last_30_days'）
+ */
+function handleDateRangeQuickSelect(filterIndex: number, value: string) {
+  const now = new Date()
+  let startDate: Date
+  let endDate = new Date(now)
+
+  switch (value) {
+    case 'last_7_days':
+      startDate = new Date(now)
+      startDate.setDate(now.getDate() - 7)
+      break
+
+    case 'last_30_days':
+      startDate = new Date(now)
+      startDate.setDate(now.getDate() - 30)
+      break
+
+    case 'last_90_days':
+      startDate = new Date(now)
+      startDate.setDate(now.getDate() - 90)
+      break
+
+    case 'this_month':
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1)
+      endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+      break
+
+    case 'last_month':
+      startDate = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+      endDate = new Date(now.getFullYear(), now.getMonth(), 0)
+      break
+
+    case 'this_year':
+      startDate = new Date(now.getFullYear(), 0, 1)
+      endDate = new Date(now.getFullYear(), 11, 31)
+      break
+
+    case 'last_year':
+      startDate = new Date(now.getFullYear() - 1, 0, 1)
+      endDate = new Date(now.getFullYear() - 1, 11, 31)
+      break
+
+    default:
+      console.warn(`Unknown quick select value: ${value}`)
+      return
+  }
+
+  dateRangeValues.value[filterIndex] = {
+    start: startDate,
+    end: endDate,
+  }
+
+  // 關閉相關的 DatePicker
+  const startPickerKey = `${filterIndex}-start`
+  const endPickerKey = `${filterIndex}-end`
+  datePickerRefs.value[startPickerKey]?.closeMenu()
+  datePickerRefs.value[endPickerKey]?.closeMenu()
+}
+
+/**
+ * 處理數值範圍的快速選擇
+ * @param filterIndex 篩選項索引
+ * @param value 快速選擇值（數值陣列 [start, end]）
+ */
+function handleNumberRangeQuickSelect(filterIndex: number, value: [number, number]) {
+  if (!Array.isArray(value) || value.length !== 2) {
+    console.warn(`Invalid quick select value for numberRange: ${value}`)
+    return
+  }
+
+  numberRangeValues.value[filterIndex] = {
+    start: value[0],
+    end: value[1],
   }
 }
 

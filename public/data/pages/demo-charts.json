@@ -5,16 +5,6 @@
       "type": "date",
       "apiParam": "date",
       "default": "2025-01-01",
-      "quickSelect": [
-        {
-          "label": "最近一週",
-          "value": "last_7_days"
-        },
-        {
-          "label": "最近一個月",
-          "value": "last_30_days"
-        }
-      ],
       "placeholder": "請選擇日期"
     },
     {
@@ -91,16 +81,6 @@
       "apiParam": "temp",
       "default": 45,
       "unit": "°C",
-      "quickSelect": [
-        {
-          "label": "正常(20-35°C)",
-          "value": [20, 35]
-        },
-        {
-          "label": "警告(35-40°C)",
-          "value": [35, 40]
-        }
-      ],
       "placeholder": "請填寫溫度"
     },
     {
