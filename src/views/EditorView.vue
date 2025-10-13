@@ -87,6 +87,7 @@ const chartOptions: Record<string, string> = {
   'Horizontal Bar Chart': 'horizontal-bar-chart.json',
   'Radar Chart': 'radar-chart.json',
   'Stacked Bar Chart': 'stacked-bar-chart.json',
+  'Horizontal Stacked Bar Chart': 'horizontal-stacked-bar-chart.json',
   'Mix Line Bar Chart': 'mix-line-bar-chart.json',
   'Bubble Chart': 'bubble-chart.json',
   'Heatmap Chart': 'heatmap-chart.json',

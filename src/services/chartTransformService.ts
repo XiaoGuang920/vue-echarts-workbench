@@ -1,7 +1,6 @@
 import type { ChartTransformer, TransformResult } from './types'
 import type { ExtendedEChartsOption } from '@/types/echarts'
 
-import { TooltipProcessor } from './processors'
 import {
   LineChartTransformer,
   LineSectionChartTransformer,
@@ -11,6 +10,7 @@ import {
   HorizontalBarChartTransformer,
   RadarChartTransformer,
   StackedBarChartTransformer,
+  HorizontalStackedBarChartTransformer,
   MixLineBarChartTransformer,
   BubbleChartTransformer,
   HeatmapChartTransformer,
@@ -31,6 +31,8 @@ import {
   BoxplotChartTransformer,
 } from './transformers'
 
+import { TooltipProcessor } from './tooltipProcessor'
+
 /**
  * Chart Transform Service
  */
@@ -47,6 +49,7 @@ class ChartTransformService {
     this.register('horizontalBar', new HorizontalBarChartTransformer())
     this.register('radar', new RadarChartTransformer())
     this.register('stackedBar', new StackedBarChartTransformer())
+    this.register('horizontalStackedBar', new HorizontalStackedBarChartTransformer())
     this.register('mixLineBar', new MixLineBarChartTransformer())
     this.register('bubble', new BubbleChartTransformer())
     this.register('heatmap', new HeatmapChartTransformer())

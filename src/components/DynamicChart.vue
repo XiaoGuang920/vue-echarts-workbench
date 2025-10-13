@@ -425,7 +425,7 @@ watch(
         await nextTick()
 
         const transformResult: TransformResult = await chartTransformService.transform(newChartJson)
-        if (!transformResult.success) {
+        if (!transformResult.success && newChartJson.chartType !== 'dashboardMetric') {
           console.error('Chart transformation failed:', transformResult.msg)
         }
 
