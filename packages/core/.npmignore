@@ -1,0 +1,29 @@
+# Source files
+src/
+public/
+
+# Config files
+*.config.*
+tsconfig*.json
+
+# Development files
+.env*
+.vscode/
+.idea/
+
+# Build artifacts (除了 dist 目錄)
+node_modules/
+*.log
+*.lock
+
+# Test files
+__tests__/
+*.test.*
+*.spec.*
+
+# Documentation (dev only)
+docs/
+
+# Git
+.git/
+.gitignore
