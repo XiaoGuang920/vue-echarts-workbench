@@ -18,6 +18,9 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
 }>()
 
+/**
+ * 取得 placeholder
+ */
 function getPlaceholder(): string {
   if (!props.filter.placeholder) {
     return ''
@@ -30,6 +33,10 @@ function getPlaceholder(): string {
   return props.filter.placeholder
 }
 
+/**
+ * 處理輸入事件
+ * @param event Input 事件
+ */
 function handleInput(event: Event) {
   const target = event.target as HTMLInputElement
   emit('update:modelValue', Number(target.value))

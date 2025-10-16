@@ -1,24 +1,21 @@
+[v-cloak] {
+  display: none;
+}
+
 * {
-  font-family: 'Fira Code', monospace;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-body {
-  overflow-x: hidden;
-  font-size: 12px;
-  background-color: #f0f0f0;
-}
-
-body .container {
+.container {
   flex: 1 1 auto;
   width: 100% !important;
   max-width: 100% !important;
 }
 
-[v-cloak] {
-  display: none;
+.dp__pointer {
+  margin: 0;
 }
 
 .popup-model {
@@ -186,7 +183,6 @@ body:has(.popup-model.active) {
   font-weight: 600;
   font-size: 0.875rem;
   color: #374151;
-  margin-bottom: 0.25rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -334,6 +330,11 @@ input:focus {
   border-color: #9ca3af;
 }
 
-.dp__pointer {
-  margin: 0;
+.select-options__label {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
 }

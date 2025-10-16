@@ -21,8 +21,8 @@
         <template v-if="renderChartJson.description">
           <span class="dynamic-chart__metric-description">{{ renderChartJson.description }}</span>
         </template>
-        <div v-if="renderChartJson.icon" class="dynamic-chart__metric-icon">
-          <FontAwesomeIcon :icon="['fas', renderChartJson.icon]" />
+        <div v-if="fontawsomeIcon" class="dynamic-chart__metric-icon">
+          <FontAwesomeIcon :icon="fontawsomeIcon" />
         </div>
       </div>
     </template>
@@ -38,13 +38,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick, computed } from 'vue'
 import type {
   EChartsModule,
   ChartOptionsConfig,
   ExtendedEChartsOption,
   DashboardMetricTrend,
 } from '../types/echarts'
+import type { TransformResult } from '../services'
+import type { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+
+import { ref, watch, nextTick, computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import * as echarts from 'echarts'
@@ -68,7 +71,7 @@ import {
   BrushComponent,
   TimelineComponent,
 } from 'echarts/components'
-import { chartTransformService, type TransformResult } from '../services'
+import { chartTransformService } from '../services'
 
 use([
   SVGRenderer,
@@ -94,12 +97,20 @@ const props = defineProps<{
   chartJson: ExtendedEChartsOption | Record<string, unknown>
 }>()
 
+// 是否載入中(用於顯示載入動畫)
 const isLoading = ref(true)
+
+// 圖表轉換後的配置(實際用於渲染)
 const renderChartJson = ref({} as ExtendedEChartsOption)
 
+// 動畫數值
 const animatedValue = ref(0)
 const isAnimating = ref(false)
 
+// FontAwesome Icon
+const fontawsomeIcon = ref<IconDefinition | null>(null)
+
+// 圖表類型對應相關設定值
 const chartOptions: ChartOptionsConfig = {
   line: {
     use: async () => {
@@ -268,6 +279,12 @@ const chartOptions: ChartOptionsConfig = {
   },
 }
 
+/**
+ * 確保非同步操作至少執行指定時間
+ * @param asyncOperation 非同步操作
+ * @param minimumTime 最少執行時間 (毫秒)
+ * @returns 非同步操作結果
+ */
 async function ensureMinimumLoadingTime<T>(
   asyncOperation: () => Promise<T>,
   minimumTime: number = 1000
@@ -295,6 +312,10 @@ async function ensureMinimumLoadingTime<T>(
   }
 }
 
+/**
+ * 取得趨勢樣式
+ * @param trend 趨勢資料
+ */
 function getTrendStyle(trend: DashboardMetricTrend): string {
   if (trend.type === 'up') {
     return 'dynamic-chart__metric-trend--up'
@@ -305,6 +326,12 @@ function getTrendStyle(trend: DashboardMetricTrend): string {
   }
 }
 
+/**
+ * 控制圖表數值動畫(BaseMetric)
+ * @param from     起始值
+ * @param to       結束值
+ * @param duration 動畫持續時間
+ */
 function animateNumber(from: number, to: number, duration: number = 2000) {
   return new Promise<void>(resolve => {
     isAnimating.value = true
@@ -333,6 +360,9 @@ function animateNumber(from: number, to: number, duration: number = 2000) {
   })
 }
 
+/**
+ * 格式化數值顯示(BaseMetric)
+ */
 const formattedValue = computed(() => {
   const value = animatedValue.value
 
@@ -360,6 +390,66 @@ const formattedValue = computed(() => {
   return value.toLocaleString()
 })
 
+/**
+ * 動態載入 FontAwesome icon
+ * @param iconName icon 名稱 (camelCase，例如：'compass-drafting' -> 'faCompassDrafting')
+ */
+async function loadDynamicIcon(iconName: string): Promise<IconDefinition | null> {
+  if (!iconName) {
+    return null
+  }
+
+  try {
+    // 將 kebab-case 轉換為 camelCase (例如: compass-drafting -> CompassDrafting)
+    const camelCaseName = iconName
+      .split('-')
+      .map((word, index) => {
+        if (index === 0) {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      })
+      .join('')
+
+    // FontAwesome icon 命名規則: fa + CamelCaseName
+    const iconImportName = `fa${camelCaseName}`
+
+    console.log(`Attempting to load icon: ${iconImportName}`)
+
+    // 動態 import FontAwesome icon
+    const iconModule = await import('@fortawesome/free-solid-svg-icons')
+
+    // 檢查 icon 是否存在
+    if (iconImportName in iconModule) {
+      return iconModule[iconImportName as keyof typeof iconModule] as IconDefinition
+    } else {
+      console.warn(`Icon "${iconImportName}" not found in @fortawesome/free-solid-svg-icons`)
+      return null
+    }
+  } catch (error) {
+    console.error(`Failed to load icon "${iconName}":`, error)
+    return null
+  }
+}
+
+/**
+ * 將各種格式的 icon 名稱標準化
+ * @param iconName 原始 icon 名稱
+ * @returns 標準化的 icon 名稱 (kebab-case)
+ */
+function normalizeIconName(iconName: string): string {
+  // 移除 'fa-' 前綴 (如果有)
+  let normalized = iconName.replace(/^fa-/, '')
+
+  // 如果是 camelCase，轉換為 kebab-case
+  normalized = normalized.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+
+  return normalized
+}
+
+/**
+ * 註冊地圖
+ */
 async function registerMapIfNeeded(options: ExtendedEChartsOption) {
   if (
     options.chartType === 'map' &&
@@ -377,6 +467,9 @@ async function registerMapIfNeeded(options: ExtendedEChartsOption) {
   }
 }
 
+/**
+ * 清理圖表配置，移除不必要的屬性
+ */
 function cleanChartOptions(options: ExtendedEChartsOption): ExtendedEChartsOption {
   const { _geoJsonData, _mapName, ...cleanOptions } = options
   void _geoJsonData
@@ -387,6 +480,13 @@ function cleanChartOptions(options: ExtendedEChartsOption): ExtendedEChartsOptio
 watch(
   () => props.chartJson,
   async (newChartJson: ExtendedEChartsOption) => {
+    if (newChartJson.chartType === 'dashboardMetric' && newChartJson.icon) {
+      const iconName = normalizeIconName(newChartJson.icon as string)
+      fontawsomeIcon.value = await loadDynamicIcon(iconName)
+    } else {
+      fontawsomeIcon.value = null
+    }
+
     const mainChartType = newChartJson.chartType
 
     if (!mainChartType) {
@@ -466,13 +566,11 @@ watch(
 </script>
 
 <style scoped>
-/* DynamicChart 主容器 */
 .dynamic-chart {
   height: 100%;
   width: 100%;
 }
 
-/* 儀表板指標模式 */
 .dynamic-chart__metric {
   position: relative;
   display: flex;
@@ -559,7 +657,6 @@ watch(
   color: #374151;
 }
 
-/* 載入狀態 */
 .dynamic-chart__loading {
   display: flex;
   height: 100%;
@@ -568,7 +665,6 @@ watch(
   justify-content: center;
 }
 
-/* 動畫效果 */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

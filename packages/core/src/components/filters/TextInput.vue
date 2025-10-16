@@ -23,6 +23,9 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 
+/**
+ * 取得 placeholder
+ */
 function getPlaceholder(): string {
   if (!props.filter.placeholder) {
     return ''

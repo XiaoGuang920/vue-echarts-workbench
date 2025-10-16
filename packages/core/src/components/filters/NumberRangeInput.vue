@@ -32,6 +32,9 @@ const emit = defineEmits<{
   (e: 'quick-select', value: [number, number]): void
 }>()
 
+/**
+ * 取得開始日期 placeholder
+ */
 function getPlaceholderStart(): string {
   if (!props.filter.placeholder) {
     return '最小值'
@@ -44,6 +47,9 @@ function getPlaceholderStart(): string {
   return props.filter.placeholder
 }
 
+/**
+ * 取得結束日期 placeholder
+ */
 function getPlaceholderEnd(): string {
   if (!props.filter.placeholder) {
     return '最大值'
@@ -56,6 +62,10 @@ function getPlaceholderEnd(): string {
   return props.filter.placeholder
 }
 
+/**
+ * 處理開始值輸入事件
+ * @param event Input 事件
+ */
 function handleStartInput(event: Event) {
   const target = event.target as HTMLInputElement
   emit('update:modelValue', {
@@ -64,6 +74,10 @@ function handleStartInput(event: Event) {
   })
 }
 
+/**
+ * 處理結束值輸入事件
+ * @param event Input 事件
+ */
 function handleEndInput(event: Event) {
   const target = event.target as HTMLInputElement
   emit('update:modelValue', {

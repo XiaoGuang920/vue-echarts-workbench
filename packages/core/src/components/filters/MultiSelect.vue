@@ -6,7 +6,7 @@
   <Transition name="fade" mode="out-in">
     <Teleport to="body">
       <div v-if="isActive" class="select-options" :style="dropdownStyle">
-        <label v-for="option in filter.options" :key="option.value">
+        <label class="select-options__label" v-for="option in filter.options" :key="option.value">
           <input
             type="checkbox"
             :value="option.value"
@@ -21,10 +21,11 @@
 </template>
 
 <script setup lang="ts">
+import type { filterOption } from '../../types/filters'
+
 import { computed, ref } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import type { filterOption } from '../../types/filters'
 
 interface Props {
   modelValue: (string | number)[]
@@ -41,8 +42,12 @@ const emit = defineEmits<{
   (e: 'toggle', index: number): void
 }>()
 
+// 下拉選單標題html元素(用於定位下拉選單位置)
 const selectTitleRef = ref<HTMLElement | null>(null)
 
+/**
+ * 顯示標籤文字
+ */
 const displayLabel = computed(() => {
   if (!props.modelValue || props.modelValue.length === 0 || !props.filter.options) {
     return props.filter.placeholder || '請選擇'
@@ -57,14 +62,23 @@ const displayLabel = computed(() => {
     .join(', ')
 })
 
+/**
+ * 切換下拉選單顯示狀態
+ */
 function toggleDropdown() {
   emit('toggle', props.index)
 }
 
+/**
+ * 判斷選項是否被選取
+ */
 function isChecked(value: string | number): boolean {
   return props.modelValue.includes(value)
 }
 
+/**
+ * 處理選項選取
+ */
 function handleSelect(value: string | number) {
   const newValue = [...props.modelValue]
   const index = newValue.indexOf(value)

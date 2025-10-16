@@ -273,7 +273,6 @@ export class TreemapChartTransformer implements ChartTransformer {
 
         const levels = series.levels as Array<Record<string, unknown>> | undefined
         const generatedLevels = this.generateTreemapLevels(data, levels, themeColors)
-        console.log(generatedLevels)
 
         const name = (series.name as string) || `Treemap ${index + 1}`
         const type = (series.type as string) || 'treemap'

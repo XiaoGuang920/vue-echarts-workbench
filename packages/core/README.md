@@ -47,9 +47,9 @@ const chartConfig = {
   series: [
     {
       name: '銷售額',
-      data: [120, 200, 150, 80, 70]
-    }
-  ]
+      data: [120, 200, 150, 80, 70],
+    },
+  ],
 }
 </script>
 ```
@@ -58,11 +58,7 @@ const chartConfig = {
 
 ```vue
 <template>
-  <ChartDashboard
-    :charts="charts"
-    :filters="filters"
-    @filter-change="handleFilterChange"
-  />
+  <ChartDashboard :charts="charts" :filters="filters" @filter-change="handleFilterChange" />
 </template>
 
 <script setup>
@@ -78,16 +74,16 @@ const charts = [
     gridWidth: 6,
     gridHeight: 4,
     xAxis: ['產品A', '產品B', '產品C'],
-    series: [{ name: '銷量', data: [100, 200, 150] }]
-  }
+    series: [{ name: '銷量', data: [100, 200, 150] }],
+  },
 ]
 
 const filters = [
   {
     type: 'dateRange',
     label: '日期範圍',
-    placeholder: { start: '開始日期', end: '結束日期' }
-  }
+    placeholder: { start: '開始日期', end: '結束日期' },
+  },
 ]
 
 function handleFilterChange(filterValues) {
@@ -119,21 +115,21 @@ function handleFilterChange(filterValues) {
 
 ### DynamicChart Props
 
-| 屬性 | 類型 | 說明 |
-|------|------|------|
+| 屬性        | 類型                    | 說明         |
+| ----------- | ----------------------- | ------------ |
 | `chartJson` | `ExtendedEChartsOption` | 圖表配置對象 |
 
 ### ChartDashboard Props
 
-| 屬性 | 類型 | 說明 |
-|------|------|------|
-| `charts` | `ExtendedEChartsOption[]` | 圖表配置數組 |
-| `filters` | `filterOption[]` | 篩選器配置數組 |
+| 屬性      | 類型                      | 說明           |
+| --------- | ------------------------- | -------------- |
+| `charts`  | `ExtendedEChartsOption[]` | 圖表配置數組   |
+| `filters` | `filterOption[]`          | 篩選器配置數組 |
 
 ### ChartDashboard Events
 
-| 事件 | 參數 | 說明 |
-|------|------|------|
+| 事件            | 參數                         | 說明               |
+| --------------- | ---------------------------- | ------------------ |
 | `filter-change` | `filterValues: FilterValues` | 篩選器值變更時觸發 |
 
 ## 📚 圖表配置示例

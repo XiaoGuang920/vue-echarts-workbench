@@ -25,10 +25,11 @@
 </template>
 
 <script setup lang="ts">
+import type { filterOption } from '../../types/filters'
+
 import { ref, watch } from 'vue'
 import DatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import type { filterOption } from '../../types/filters'
 
 interface Props {
   modelValue: { start: Date | null; end: Date | null }
@@ -55,10 +56,16 @@ watch(
   { deep: true }
 )
 
+/**
+ * 當日期範圍更新時，發出更新事件
+ */
 function handleUpdate() {
   emit('update:modelValue', localValue.value)
 }
 
+/**
+ * 取得開始日期的 placeholder
+ */
 function getPlaceholderStart(): string {
   if (!props.filter.placeholder) {
     return '開始日期'
@@ -71,6 +78,9 @@ function getPlaceholderStart(): string {
   return props.filter.placeholder
 }
 
+/**
+ * 取得結束日期的 placeholder
+ */
 function getPlaceholderEnd(): string {
   if (!props.filter.placeholder) {
     return '結束日期'

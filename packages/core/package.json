@@ -1,6 +1,6 @@
 {
-  "name": "vue-echarts-workbench-temp",
-  "version": "0.0.0-beta.7",
+  "name": "vue-echarts-workbench",
+  "version": "0.0.0-beta.1",
   "description": "A powerful Vue 3 component library for building ECharts dashboards",
   "type": "module",
   "main": "./dist/vue-echarts-workbench.umd.js",

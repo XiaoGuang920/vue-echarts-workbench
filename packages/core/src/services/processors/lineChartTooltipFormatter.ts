@@ -13,7 +13,6 @@ export class LineChartTooltipFormatter implements TooltipFormatter {
     isDark: boolean,
     chartOptions: ExtendedEChartsOption
   ): (params: CallbackDataParams) => string {
-    console.log(ColorManager.getTooltipColors(isDark))
     return (params: CallbackDataParams) => {
       const tooltipColors = ColorManager.getTooltipColors(isDark)
 

@@ -22,13 +22,13 @@
     <!-- 篩選彈窗 -->
     <div class="popup-model" :class="{ active: showPopup }" @click="emit('toggle-popup')">
       <div class="popup-content" @click.stop>
-        <div v-if="filters.length == 0" class="filter-panel__empty-state">
+        <div v-if="filterConfigs.length == 0" class="filter-panel__empty-state">
           <FontAwesomeIcon :icon="faFaceFrown" class="filter-panel__empty-icon" />沒有任何篩選項
         </div>
         <div v-else class="popup-body" @scroll="handleScroll">
           <div class="scroll-container">
             <div class="filter-panel__grid">
-              <div v-for="(filter, index) in filters" :key="index" class="input-group">
+              <div v-for="(filter, index) in filterConfigs" :key="index" class="input-group">
                 <div class="input-title">{{ filter.label }}</div>
                 <div class="input-content">
                   <template v-if="filter.type == 'text'">
@@ -144,8 +144,7 @@ import SingleSelect from './filters/SingleSelect.vue'
 import MultiSelect from './filters/MultiSelect.vue'
 
 interface Props {
-  filters: filterOption[]
-  filterTags: { [key: number]: string }
+  filterConfigs: filterOption[]
   showPopup: boolean
 }
 
@@ -157,6 +156,7 @@ const emit = defineEmits<{
   (e: 'reset'): void
 }>()
 
+// 各種型態篩選值(key: 對應)
 const textValues = ref<{ [key: number]: string }>({})
 const numberValues = ref<{ [key: number]: number }>({})
 const dateValues = ref<{ [key: number]: Date | null }>({})
@@ -165,26 +165,49 @@ const numberRangeValues = ref<{ [key: number]: { start: number; end: number } }>
 const singleSelectValues = ref<{ [key: number]: string }>({})
 const multiSelectValues = ref<{ [key: number]: string[] }>({})
 
+// 篩選標籤(key: 對應)
+const filterTags = ref<{ [key: number]: string }>({})
+
+// 日期選擇器html元素類型
 type DatePickerRef = { closeMenu?: () => void; closeMenus?: () => void }
 
+// 日期選擇器html元素
 const datePickerRefs = ref<{ [key: string]: DatePickerRef | null }>({})
+// 下拉選單html元素
 const selectRefs = ref<{ [key: number]: HTMLElement }>({})
+// 下拉選單顯示狀態
 const selectActives = ref<{ [key: number]: boolean }>({})
+// 下拉選單位置
 const dropdownPositions = ref<{ [key: number]: { top: number; left: number; width: number } }>({})
 
-function setDatePickerRef(el: unknown, index: number) {
+/**
+ * 設定日期選擇器參考
+ * @param el    元素
+ * @param index 索引
+ */
+function setDatePickerRef(el: unknown, index: number): void {
   if (el) {
     datePickerRefs.value[index] = el as DatePickerRef
   }
 }
 
-function setDateRangePickerRef(el: unknown, index: number) {
+/**
+ * 設定日期範圍選擇器參考
+ * @param el    元素
+ * @param index 索引
+ */
+function setDateRangePickerRef(el: unknown, index: number): void {
   if (el) {
     datePickerRefs.value[`${index}-range`] = el as DatePickerRef
   }
 }
 
-function setSelectRef(el: unknown, index: number) {
+/**
+ * 設定下拉選單參考
+ * @param el    元素
+ * @param index 索引
+ */
+function setSelectRef(el: unknown, index: number): void {
   const component = el as { selectTitleRef?: HTMLElement | null } | null
   if (component && component.selectTitleRef) {
     selectRefs.value[index] = component.selectTitleRef
@@ -195,15 +218,22 @@ function setSelectRef(el: unknown, index: number) {
   }
 }
 
-function closeAllSelects() {
+/**
+ * 關閉所有下拉選單
+ */
+function closeAllSelects(): void {
   Object.keys(selectActives.value).forEach((key: string) => {
     const keyAsNumber = parseInt(key, 10)
     selectActives.value[keyAsNumber] = false
   })
 }
 
-function toggleSelect(index: number) {
-  const filter = props.filters[index]
+/**
+ * 切換下拉選單顯示狀態
+ * @param index 索引
+ */
+function toggleSelect(index: number): void {
+  const filter = props.filterConfigs[index]
   if (filter.type === 'singleSelect' || filter.type === 'multiSelect') {
     selectActives.value[index] = !selectActives.value[index]
 
@@ -215,7 +245,11 @@ function toggleSelect(index: number) {
   }
 }
 
-function updateDropdownPosition(index: number) {
+/**
+ * 更新下拉選單位置
+ * @param index 索引
+ */
+function updateDropdownPosition(index: number): void {
   const selectElement = selectRefs.value[index]
   if (selectElement) {
     const rect = selectElement.getBoundingClientRect()
@@ -227,6 +261,10 @@ function updateDropdownPosition(index: number) {
   }
 }
 
+/**
+ * 取得下拉選單樣式
+ * @param index 索引
+ */
 function getDropdownStyle(index: number): Record<string, string> {
   const position = dropdownPositions.value[index]
   if (!position) return {}
@@ -240,8 +278,13 @@ function getDropdownStyle(index: number): Record<string, string> {
   }
 }
 
-function handleQuickSelect(filterIndex: number, quickSelectValue: string | number[]) {
-  const filter = props.filters[filterIndex]
+/**
+ * 處理快速選擇按鈕(對應JSON-quickSelect)
+ * @param filterIndex      篩選索引
+ * @param quickSelectValue 快速選擇值
+ */
+function handleQuickSelect(filterIndex: number, quickSelectValue: string | number[]): void {
+  const filter = props.filterConfigs[filterIndex]
 
   if (!filter) return
 
@@ -258,7 +301,12 @@ function handleQuickSelect(filterIndex: number, quickSelectValue: string | numbe
   }
 }
 
-function handleDateRangeQuickSelect(filterIndex: number, value: string) {
+/**
+ * 處理日期範圍快速選擇
+ * @param filterIndex 篩選索引
+ * @param value       快速選擇值
+ */
+function handleDateRangeQuickSelect(filterIndex: number, value: string): void {
   const now = new Date()
   let startDate: Date
   let endDate = new Date(now)
@@ -301,21 +349,28 @@ function handleDateRangeQuickSelect(filterIndex: number, value: string) {
     end: endDate,
   }
 
-  // 關閉 DatePicker
   const rangeRef = datePickerRefs.value[`${filterIndex}-range`]
   if (rangeRef && rangeRef.closeMenus) {
     rangeRef.closeMenus()
   }
 }
 
-function handleNumberRangeQuickSelect(filterIndex: number, value: [number, number]) {
+/**
+ * 處理數字範圍快速選擇
+ * @param filterIndex 篩選索引
+ * @param value       快速選擇值
+ */
+function handleNumberRangeQuickSelect(filterIndex: number, value: [number, number]): void {
   numberRangeValues.value[filterIndex] = {
     start: value[0],
     end: value[1],
   }
 }
 
-function handleScroll() {
+/**
+ * 處理滾動事件
+ */
+function handleScroll(): void {
   closeAllSelects()
 
   Object.keys(datePickerRefs.value).forEach(key => {
@@ -329,8 +384,127 @@ function handleScroll() {
   })
 }
 
+/**
+ * 格式化日期
+ * @param date 日期
+ */
+function formatDate(date: Date): string {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}
+
+/**
+ * 設定篩選標籤
+ */
+function setFilterTags(): void {
+  const tags: { [key: number]: string } = {}
+
+  // Text filters
+  Object.keys(textValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const value = textValues.value[keyAsNumber]
+
+    if (value && filter) {
+      tags[keyAsNumber] = `${filter.label}: ${value}`
+    }
+  })
+
+  // Number filters
+  Object.keys(numberValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const value = numberValues.value[keyAsNumber]
+
+    if (value !== undefined && value !== null && filter) {
+      const unit = filter.unit || ''
+      tags[keyAsNumber] = `${filter.label}: ${value}${unit}`
+    }
+  })
+
+  // Date filters
+  Object.keys(dateValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const value = dateValues.value[keyAsNumber]
+
+    if (value && filter) {
+      const dateStr = formatDate(value)
+      tags[keyAsNumber] = `${filter.label}: ${dateStr}`
+    }
+  })
+
+  // Date range filters
+  Object.keys(dateRangeValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const range = dateRangeValues.value[keyAsNumber]
+
+    if (range && (range.start || range.end) && filter) {
+      const startStr = range.start ? formatDate(range.start) : ''
+      const endStr = range.end ? formatDate(range.end) : ''
+      tags[keyAsNumber] = `${filter.label}: ${startStr} ~ ${endStr}`
+    }
+  })
+
+  // Number range filters
+  Object.keys(numberRangeValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const range = numberRangeValues.value[keyAsNumber]
+
+    if (range && (range.start !== undefined || range.end !== undefined) && filter) {
+      const unit = filter.unit || ''
+      tags[keyAsNumber] = `${filter.label}: ${range.start}${unit} ~ ${range.end}${unit}`
+    }
+  })
+
+  // Single select filters
+  Object.keys(singleSelectValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const value = singleSelectValues.value[keyAsNumber]
+
+    if (value && filter && filter.options) {
+      const option = filter.options.find(opt => opt.value === value)
+      const label = option ? option.label : value
+      tags[keyAsNumber] = `${filter.label}: ${label}`
+    }
+  })
+
+  // Multi select filters
+  Object.keys(multiSelectValues.value).forEach(key => {
+    const keyAsNumber = parseInt(key, 10)
+    const filter = props.filterConfigs[keyAsNumber]
+    const values_ms = multiSelectValues.value[keyAsNumber]
+
+    if (values_ms && values_ms.length > 0 && filter && filter.options) {
+      const labels = values_ms
+        .map(value => {
+          const option = filter.options!.find(opt => opt.value === value)
+          return option ? option.label : value
+        })
+        .filter(Boolean)
+        .join(', ')
+
+      tags[keyAsNumber] = `${filter.label}: ${labels}`
+    }
+  })
+
+  filterTags.value = tags
+}
+
+/**
+ * 初始化篩選值
+ */
 function initFilters() {
-  props.filters.forEach((filter: filterOption, index: number) => {
+  props.filterConfigs.forEach((filter: filterOption, index: number) => {
     if (filter.default === undefined || filter.default == null) return
 
     switch (filter.type) {
@@ -382,10 +556,14 @@ function initFilters() {
     }
   })
 
+  setFilterTags()
   closeAllSelects()
 }
 
-function handleApply() {
+/**
+ * 處理套用按鈕
+ */
+function handleApply(): void {
   emit('apply', {
     text: textValues.value,
     number: numberValues.value,
@@ -395,14 +573,22 @@ function handleApply() {
     singleSelect: singleSelectValues.value,
     multiSelect: multiSelectValues.value,
   })
+
+  setFilterTags()
 }
 
-function handleReset() {
+/**
+ * 處理重置按鈕
+ */
+function handleReset(): void {
   initFilters()
   emit('reset')
 }
 
-function handleResize() {
+/**
+ * 處理視窗調整大小事件
+ */
+function handleResize(): void {
   Object.keys(selectActives.value).forEach((key: string) => {
     const keyAsNumber = parseInt(key, 10)
     if (selectActives.value[keyAsNumber]) {
@@ -411,6 +597,11 @@ function handleResize() {
   })
 }
 
+/**
+ * 節流函式
+ * @param func  要節流的函式
+ * @param limit 節流時間限制
+ */
 function throttle(func: () => void, limit: number): () => void {
   let inThrottle: boolean
   return function () {
@@ -422,12 +613,16 @@ function throttle(func: () => void, limit: number): () => void {
   }
 }
 
+/**
+ * 節流處理視窗調整大小事件
+ */
 const throttledHandleResize = throttle(handleResize, 200)
 
 watch(
-  () => props.filters,
+  () => props.filterConfigs,
   () => {
     initFilters()
+    setFilterTags()
   },
   { immediate: true }
 )
@@ -447,12 +642,10 @@ defineExpose({
 </script>
 
 <style scoped>
-/* FilterPanel 主容器 */
 .filter-panel {
   width: 100%;
 }
 
-/* 篩選摘要區域 */
 .filter-panel__summary {
   position: relative;
   display: flex;
@@ -463,7 +656,9 @@ defineExpose({
   padding: 1rem 2rem;
   font-size: 1rem;
   color: #44444e;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .filter-panel__label {
@@ -488,7 +683,6 @@ defineExpose({
   justify-content: center;
 }
 
-/* 空狀態 */
 .filter-panel__empty-state {
   display: flex;
   height: 50vh;
@@ -507,7 +701,6 @@ defineExpose({
   font-size: 3.75rem;
 }
 
-/* 篩選器網格 */
 .filter-panel__grid {
   display: grid;
   height: 100%;
@@ -521,7 +714,6 @@ defineExpose({
   }
 }
 
-/* 按鈕樣式 */
 .filter-panel__btn {
   display: flex;
   width: 8rem;
@@ -572,7 +764,6 @@ defineExpose({
   gap: 1rem;
 }
 
-/* 動畫效果 */
 .fade-enter-active,
 .fade-leave-active {
   transition:

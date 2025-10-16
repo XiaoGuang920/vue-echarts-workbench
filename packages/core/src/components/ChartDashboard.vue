@@ -2,12 +2,10 @@
   <div class="chart-dashboard">
     <FilterPanel
       ref="filterPanelRef"
-      :filters="filterConfigs"
-      :filter-tags="filterTags"
+      :filter-configs="filterConfigs"
       :show-popup="showFilterPopup"
       @toggle-popup="togglePopup"
       @apply="handleFilterApply"
-      @reset="handleFilterReset"
     />
 
     <div ref="chartGridRef" class="chart-dashboard__grid">
@@ -24,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, nextTick } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import FilterPanel from './FilterPanel.vue'
 import DynamicChart from './DynamicChart.vue'
 import type { FilterValues } from '../types/filters'
@@ -47,15 +45,19 @@ const emit = defineEmits<{
   (e: 'error', error: Error): void
 }>()
 
+// 篩選項設定
 const filterConfigs = ref<filterOption[]>([])
 const chartConfigs = ref<ExtendedEChartsOption[]>([])
 const showFilterPopup = ref(false)
-const filterTags = ref<{ [key: number]: string }>({})
 const chartGridRef = ref<HTMLElement | null>(null)
 const filterPanelRef = ref<InstanceType<typeof FilterPanel> | null>(null)
 
+// 單一圖表基準尺寸
 const itemBaseSize = ref(180)
 
+/**
+ * 切換篩選面板顯示狀態
+ */
 function togglePopup() {
   if (showFilterPopup.value === true && filterPanelRef.value) {
     filterPanelRef.value.closeAllSelects()
@@ -68,6 +70,11 @@ function togglePopup() {
   }
 }
 
+/**
+ * 函式節流
+ * @param func  要節流的函式
+ * @param limit 節流時間限制
+ */
 function throttle(func: () => void, limit: number): () => void {
   let inThrottle: boolean
   return function () {
@@ -79,6 +86,9 @@ function throttle(func: () => void, limit: number): () => void {
   }
 }
 
+/**
+ * 更新單一圖表基準尺寸
+ */
 function updateItemSize() {
   if (!chartGridRef.value) return
 
@@ -97,8 +107,15 @@ function updateItemSize() {
   }
 }
 
+/**
+ * 節流更新圖表尺寸
+ */
 const throttledUpdateSize = throttle(updateItemSize, 100)
 
+/**
+ * 獲取圖表網格樣式
+ * @param chart 圖表配置
+ */
 function getGridStyles(chart: ExtendedEChartsOption | Record<string, unknown>) {
   const x = (chart.gridX as number) || 1
   const y = (chart.gridY as number) || 1
@@ -115,189 +132,18 @@ function getGridStyles(chart: ExtendedEChartsOption | Record<string, unknown>) {
   }
 }
 
+/**
+ * 處理篩選條件應用
+ * @param values 篩選條件值
+ */
 function handleFilterApply(values: FilterValues) {
-  setFilterTags(values)
   togglePopup()
   emit('filter-change', values)
 }
 
-function handleFilterReset() {
-  filterTags.value = {}
-}
-
-function setFilterTags(values: FilterValues) {
-  const tags: { [key: number]: string } = {}
-
-  // Text filters
-  Object.keys(values.text).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const value = values.text[keyAsNumber]
-
-    if (value && filter) {
-      tags[keyAsNumber] = `${filter.label}: ${value}`
-    }
-  })
-
-  // Number filters
-  Object.keys(values.number).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const value = values.number[keyAsNumber]
-
-    if (value !== undefined && value !== null && filter) {
-      const unit = filter.unit || ''
-      tags[keyAsNumber] = `${filter.label}: ${value}${unit}`
-    }
-  })
-
-  // Date filters
-  Object.keys(values.date).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const value = values.date[keyAsNumber]
-
-    if (value && filter) {
-      const dateStr = formatDate(value)
-      tags[keyAsNumber] = `${filter.label}: ${dateStr}`
-    }
-  })
-
-  // Date range filters
-  Object.keys(values.dateRange).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const range = values.dateRange[keyAsNumber]
-
-    if (range && (range.start || range.end) && filter) {
-      const startStr = range.start ? formatDate(range.start) : ''
-      const endStr = range.end ? formatDate(range.end) : ''
-      tags[keyAsNumber] = `${filter.label}: ${startStr} ~ ${endStr}`
-    }
-  })
-
-  // Number range filters
-  Object.keys(values.numberRange).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const range = values.numberRange[keyAsNumber]
-
-    if (range && (range.start !== undefined || range.end !== undefined) && filter) {
-      const unit = filter.unit || ''
-      tags[keyAsNumber] = `${filter.label}: ${range.start}${unit} ~ ${range.end}${unit}`
-    }
-  })
-
-  // Single select filters
-  Object.keys(values.singleSelect).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const value = values.singleSelect[keyAsNumber]
-
-    if (value && filter && filter.options) {
-      const option = filter.options.find(opt => opt.value === value)
-      const label = option ? option.label : value
-      tags[keyAsNumber] = `${filter.label}: ${label}`
-    }
-  })
-
-  // Multi select filters
-  Object.keys(values.multiSelect).forEach(key => {
-    const keyAsNumber = parseInt(key, 10)
-    const filter = filterConfigs.value[keyAsNumber]
-    const values_ms = values.multiSelect[keyAsNumber]
-
-    if (values_ms && values_ms.length > 0 && filter && filter.options) {
-      const labels = values_ms
-        .map(value => {
-          const option = filter.options!.find(opt => opt.value === value)
-          return option ? option.label : value
-        })
-        .filter(Boolean)
-        .join(', ')
-
-      tags[keyAsNumber] = `${filter.label}: ${labels}`
-    }
-  })
-
-  filterTags.value = tags
-}
-
-function formatDate(date: Date): string {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
-
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-}
-
-function initializeFilterTags() {
-  // 從 filterConfigs 的 default 值初始化 filterTags
-  const initialValues: FilterValues = {
-    text: {},
-    number: {},
-    date: {},
-    dateRange: {},
-    numberRange: {},
-    singleSelect: {},
-    multiSelect: {},
-  }
-
-  filterConfigs.value.forEach((filter, index) => {
-    if (filter.default === undefined || filter.default === null) return
-
-    switch (filter.type) {
-      case 'text':
-        initialValues.text[index] = (filter.default as string) || ''
-        break
-      case 'number':
-        initialValues.number[index] = (filter.default as number) || 0
-        break
-      case 'date':
-        initialValues.date[index] = filter.default ? new Date(filter.default as string) : null
-        break
-      case 'dateRange':
-        if (
-          filter.default &&
-          typeof filter.default === 'object' &&
-          !Array.isArray(filter.default)
-        ) {
-          const rangeDefault = filter.default as { start: string; end: string }
-          initialValues.dateRange[index] = {
-            start: new Date(rangeDefault.start),
-            end: new Date(rangeDefault.end),
-          }
-        }
-        break
-      case 'numberRange':
-        if (
-          filter.default &&
-          typeof filter.default === 'object' &&
-          !Array.isArray(filter.default)
-        ) {
-          const rangeDefault = filter.default as { start: number; end: number }
-          initialValues.numberRange[index] = {
-            start: rangeDefault.start,
-            end: rangeDefault.end,
-          }
-        }
-        break
-      case 'singleSelect':
-        initialValues.singleSelect[index] = (filter.default as string) || ''
-        break
-      case 'multiSelect':
-        initialValues.multiSelect[index] = (filter.default as string[]) || []
-        break
-    }
-  })
-
-  // 使用初始值設置 filterTags
-  setFilterTags(initialValues)
-}
-
+/**
+ * 載入配置
+ */
 async function loadConfig() {
   try {
     if (props.config) {
@@ -314,11 +160,6 @@ async function loadConfig() {
       filterConfigs.value = data.filters || []
       chartConfigs.value = (data.charts || []) as ExtendedEChartsOption[]
       emit('charts-loaded', chartConfigs.value as ExtendedEChartsOption[])
-    }
-
-    if (filterConfigs.value.length > 0) {
-      await nextTick()
-      initializeFilterTags()
     }
   } catch (error) {
     console.error('Error loading config:', error)
@@ -344,13 +185,11 @@ defineExpose({
 </script>
 
 <style scoped>
-/* ChartDashboard 主容器 */
 .chart-dashboard {
   width: 100%;
   height: 100%;
 }
 
-/* 圖表網格容器 */
 .chart-dashboard__grid {
   margin-top: 1.5rem;
   display: grid;
@@ -359,11 +198,12 @@ defineExpose({
   gap: 1rem;
 }
 
-/* 圖表項目 */
 .chart-dashboard__item {
   overflow: hidden;
   border-radius: 0.5rem;
   background-color: #ffffff;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 </style>

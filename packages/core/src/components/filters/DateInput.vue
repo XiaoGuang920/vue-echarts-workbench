@@ -13,10 +13,11 @@
 </template>
 
 <script setup lang="ts">
+import type { filterOption } from '../../types/filters'
+
 import { ref, watch } from 'vue'
 import DatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import type { filterOption } from '../../types/filters'
 
 interface Props {
   modelValue: Date | null
@@ -40,10 +41,16 @@ watch(
   }
 )
 
+/**
+ * 當日期更新時，發出更新事件
+ */
 function handleUpdate() {
   emit('update:modelValue', localValue.value)
 }
 
+/**
+ * 取得 placeholder
+ */
 function getPlaceholder(): string {
   if (!props.filter.placeholder) {
     return '請選擇日期'
