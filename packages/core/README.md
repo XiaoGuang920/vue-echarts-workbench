@@ -181,13 +181,6 @@ function handleFilterChange(filterValues) {
 }
 ```
 
-## 🌍 環境變量
-
-```bash
-# .env
-VITE_GEO_JSON_BASE_URL=https://your-cdn.com/geo/
-```
-
 ## 🤝 貢獻
 
 歡迎提交 Issue 和 Pull Request！
@@ -200,7 +193,7 @@ MIT License
 
 <aaron.wang890920@gmail.com>
 
-## 🔗 相關鏈接
+## 🔗 相關連結
 
 - [ECharts 官方文檔](https://echarts.apache.org/)
 - [Vue ECharts](https://github.com/ecomfe/vue-echarts)
